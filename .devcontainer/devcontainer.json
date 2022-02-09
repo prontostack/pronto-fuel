@@ -1,0 +1,40 @@
+// https://aka.ms/devcontainer.json
+{
+    "name": "Pronto Fuel Dev Container",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "laravel.test",
+    "workspaceFolder": "/var/www/html",
+    "settings": {
+        "[vue]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+            "editor.tabSize": 2,
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        },
+    },
+    "extensions": [
+        "mikestead.dotenv",
+        "eg2.vscode-npm-script",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "bmewburn.vscode-intelephense-client",
+        "formulahendry.auto-rename-tag",
+        "onecentlin.laravel-blade",
+        "ryannaddy.laravel-artisan",
+        "onecentlin.laravel5-snippets",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "eamodio.gitlens",
+        "johnsoncodehk.volar",
+        "EditorConfig.EditorConfig",
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode"
+    ],
+    "remoteUser": "sail",
+    // "forwardPorts": [],
+    // "runServices": [],
+    // "postCreateCommand": "apt-get update && apt-get install -y curl",
+    "shutdownAction": "stopCompose",
+}

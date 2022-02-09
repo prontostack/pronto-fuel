@@ -57,6 +57,11 @@
 
                   <template #content>
                     <DropdownLink
+                      :href="route('account.index')"
+                    >
+                      My account
+                    </DropdownLink>
+                    <DropdownLink
                       :href="route('logout')"
                       method="post"
                       as="button"
