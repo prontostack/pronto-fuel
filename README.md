@@ -13,6 +13,7 @@
 -   ⬇️ [Common Vue and Inertia APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 -   😃 [Use icons from any icon sets, with no compromise](https://github.com/antfu/unplugin-icons)
 -   🐋 [VSCode Dev Container](https://code.visualstudio.com/docs/remote/containers) with everything you need to start developing
+-   🪲 Debug with [Ray](https://spatie.be/docs/ray/v1/introduction) on [port 23517](http://localhost:23517/) by default
 -   👮 Enforce code quality with [ESLint](https://eslint.org/) and [StandardJS](https://standardjs.com/)
 
 ## Quick Start
@@ -32,7 +33,6 @@ npm start
 ```
 git clone git@github.com:prontostack/pronto-fuel.git
 cp .env.example .env
-
 code .
 
 # Open VSCode's command palette
