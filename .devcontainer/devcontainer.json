@@ -30,7 +30,9 @@
         "johnsoncodehk.volar",
         "EditorConfig.EditorConfig",
         "streetsidesoftware.code-spell-checker",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "sleistner.vscode-fileutils"
     ],
     "remoteUser": "sail",
     // "forwardPorts": [],
