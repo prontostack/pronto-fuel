@@ -2,14 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-a {
-    @apply text-primary-500;
-}
+@layer base {
+    a {
+        @apply tw-text-primary-500;
+    }
 
-a:hover {
-    @apply text-primary-400;
-}
+    a:hover {
+        @apply tw-text-primary-400;
+    }
 
-a:focus {
-    @apply outline-1 outline-primary-200;
+    a:focus {
+        @apply tw-outline-1 tw-outline-primary-200;
+    }
 }

@@ -1,30 +1,30 @@
 <template>
   <div
     class="
-      flex
-      flex-col
-      min-h-screen
-      justify-center
-      items-center
-      p-6
-      bg-gray-100
+      tw-flex
+      tw-flex-col
+      tw-min-h-screen
+      tw-justify-center
+      tw-items-center
+      tw-p-6
+      tw-bg-gray-100
     "
   >
     <div>
       <Link href="/">
-        <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
+        <ApplicationLogo class="tw-w-20 tw-h-20 tw-fill-current tw-text-gray-500" />
       </Link>
     </div>
     <div
       class="
-        w-full
-        max-w-md
-        mt-6
-        p-6
-        bg-white
-        shadow-xl
-        overflow-hidden
-        rounded-lg
+        tw-w-full
+        tw-max-w-md
+        tw-mt-6
+        tw-p-6
+        tw-bg-white
+        tw-shadow-xl
+        tw-overflow-hidden
+        tw-rounded-lg
       "
     >
       <slot />

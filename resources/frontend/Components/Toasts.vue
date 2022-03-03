@@ -1,18 +1,18 @@
 <template>
   <notifications
-    class="min-w-[300px] p-0 bg-none border-none m-6"
+    class="tw-min-w-[300px] tw-p-0 tw-bg-none tw-border-none tw-m-6"
     position="bottom right"
   >
     <template
       #body="{ item, close }"
     >
-      <PAlert
-        class="m-2"
+      <Alert
+        class="tw-m-2"
         :type="item.type"
         @dismiss="close"
       >
         {{ item.text }}
-      </PAlert>
+      </Alert>
     </template>
   </notifications>
 </template>

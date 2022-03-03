@@ -1,50 +1,56 @@
 <template layout="Guest">
   <Head title="Login" />
 
-  <form @submit.prevent="form.post(route('login'))">
-    <PInput
+  <form
+    class="tw-flex-col tw-space-y-2"
+    @submit.prevent="form.post(route('login'))"
+  >
+    <q-input
       id="email"
       v-model="form.email"
-      :error-messages="errors.email"
+      :error-message="errors.email"
+      :error="!!errors.email"
       label="Email"
       type="email"
       autofocus
       autocomplete="username"
       required
+      outlined
     />
 
-    <PInput
+    <q-input
       id="password"
       v-model="form.password"
-      :error-messages="errors.password"
+      :error-message="errors.password"
+      :error="!!errors.password"
       label="Password"
       type="password"
       autocomplete="current-password"
       required
+      outlined
     />
 
-    <PCheckbox
+    <q-checkbox
       v-model="form.remember"
       label="Remember me"
     />
 
-    <div class="flex items-center justify-end mt-6">
+    <div class="tw-flex tw-items-center tw-justify-between">
       <Link
         v-if="canResetPassword"
         :href="route('password.request')"
-        class="text-sm"
       >
         Forgot your password?
       </Link>
 
-      <PButton
+      <q-btn
         :disabled="form.processing"
         type="submit"
         color="primary"
         class="ml-4"
       >
         Log in
-      </PButton>
+      </q-btn>
     </div>
   </form>
 </template>

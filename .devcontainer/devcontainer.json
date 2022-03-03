@@ -1,6 +1,6 @@
 // https://aka.ms/devcontainer.json
 {
-    "name": "Pronto Fuel Dev Container",
+    "name": "Pronto Fuel",
     "dockerComposeFile": [
         "../docker-compose.yml"
     ],

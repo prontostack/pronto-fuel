@@ -25,9 +25,17 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        'title' => 'Dashboard'
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/account', function () {
-    return Inertia::render('Account');
+    return Inertia::render('Account', [
+        'title' => 'My Account'
+    ]);
 })->middleware(['auth', 'verified'])->name('account.index');
+
+Route::post('/notify', function () {
+    return back()->toast('This notification comes from the server side =)');
+});

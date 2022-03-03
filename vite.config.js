@@ -3,6 +3,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { QuasarResolver } from 'unplugin-vue-components/resolvers'
+import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 const Dotenv = require('dotenv')
 const { resolve } = require('path')
 
@@ -23,11 +25,11 @@ export default {
         }
       ]
     }),
+
     Components({
       dirs: [
         'Components',
-        'Layouts',
-        resolve(__dirname, 'resources/prontostack/pronto-ui/src/Components')
+        'Layouts'
       ],
       extensions: [
         'vue'
@@ -35,6 +37,7 @@ export default {
       directoryAsNamespace: true,
       deep: true,
       resolvers: [
+        QuasarResolver(),
         IconsResolver(),
         (name) => {
           if (name === 'Head') {
@@ -53,9 +56,11 @@ export default {
         }
       ]
     }),
+
     Icons({
       autoInstall: true
     }),
+
     {
       name: 'vite:inertia:layout',
       transform: (code) => {
@@ -74,7 +79,20 @@ export default {
         `)
       }
     },
-    vue()
+
+    vue({
+      template: { transformAssetUrls }
+    }),
+
+    quasar({
+      autoImportComponentCase: 'combined'
+      /**
+       * Uncomment this if you want to customize Quasar variables
+       * @see https://quasar.dev/style/sass-scss-variables
+       *
+       * sassVariables: '@/assets/quasar-variables.scss'
+       */
+    })
   ],
 
   root: 'resources/frontend',
@@ -106,7 +124,6 @@ export default {
       'vue',
       '@inertiajs/inertia',
       '@inertiajs/inertia-vue3',
-      '@inertiajs/progress',
       'axios'
     ]
   }

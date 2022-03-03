@@ -1,21 +1,28 @@
-<template>
-  <Head title="Dashboard" />
+<template layout="Authenticated">
+  <Head :title="title" />
 
-  <Authenticated>
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Dashboard
-      </h2>
-    </template>
+  <h1 class="text-h4 tw-mb-6">
+    {{ title }}
+  </h1>
 
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-          <div class="p-6 bg-white border-b border-gray-200">
-            You're logged in!
-          </div>
-        </div>
-      </div>
-    </div>
-  </Authenticated>
+  <p class="text-body-1">
+    Try out a server driven toast notification handled with Inertia:
+  </p>
+
+  <p class="text-body-1">
+    Checkout the <span class="tw-bg-gray-200 tw-rounded tw-p-1">routes/web.php</span> file to see how does it work.
+  </p>
+
+  <q-btn
+    color="positive"
+    @click="$inertia.post('/notify')"
+  >
+    Success toast
+  </q-btn>
 </template>
+
+<script setup>
+defineProps({
+  title: String
+})
+</script>

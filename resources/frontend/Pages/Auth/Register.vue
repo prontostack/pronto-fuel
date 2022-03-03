@@ -1,64 +1,71 @@
 <template layout="Guest">
   <Head title="Register" />
 
-  <form @submit.prevent="submit">
-    <PInput
+  <form
+    class="tw-flex-col tw-space-y-2"
+    @submit.prevent="form.post(route('register'))"
+  >
+    <q-input
       id="name"
       v-model="form.name"
-      :error-messages="errors.name"
+      :error-message="errors.name"
+      :error="!!errors.name"
       label="Name"
       type="text"
       autofocus
       autocomplete="name"
       required
+      outlined
     />
 
-    <PInput
+    <q-input
       id="email"
       v-model="form.email"
-      :error-messages="errors.email"
+      :error-message="errors.email"
+      :error="!!errors.email"
       label="Email"
       type="email"
       autocomplete="username"
       required
+      outlined
     />
 
-    <PInput
+    <q-input
       id="password"
       v-model="form.password"
-      :error-messages="errors.password"
+      :error-message="errors.password"
+      :error="!!errors.password"
       label="Password"
       type="password"
       autocomplete="new-password"
       required
+      outlined
     />
 
-    <PInput
+    <q-input
       id="password_confirmation"
       v-model="form.password_confirmation"
-      :error-messages="errors.password_confirmation"
+      :error-message="errors.password_confirmation"
+      :error="!!errors.password_confirmation"
       label="Confirm Password"
       type="password"
       autocomplete="new-password"
       required
+      outlined
     />
 
-    <div class="flex items-center justify-end mt-6">
-      <Link
-        :href="route('login')"
-        class="text-sm"
-      >
+    <div class="tw-flex tw-items-center tw-justify-between">
+      <Link :href="route('login')">
         Already registered?
       </Link>
 
-      <PButton
+      <q-btn
         :disabled="form.processing"
         type="submit"
         color="primary"
-        class="ml-4"
       >
         Register
-      </PButton>
+      </q-btn>
     </div>
   </form>
 </template>
@@ -70,6 +77,4 @@ const props = defineProps({
 })
 
 const form = useForm(props.form)
-
-const submit = () => form.post(window.route('register'))
 </script>
