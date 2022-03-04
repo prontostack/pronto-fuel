@@ -4,19 +4,20 @@
 
 ## Features
 
-- ⏩ [Inertia.js](https://inertiajs.com/)
-- 🔰 [Vue 3](https://github.com/vuejs/core)
-- ⚡️ [Vite](https://vitejs.dev/)
-- 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227) for Vue
-- 📦 [Components auto importing](https://github.com/antfu/unplugin-vue-components)
-- ⬇️ [Common Vue and Inertia APIs auto importing](https://github.com/antfu/unplugin-auto-import)
-- 🎨 [Tailwind CSS](https://tailwindcss.com/) configured with common [PostCSS](https://postcss.org/) plugins, like [nesting](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting) and [extend rule](https://github.com/csstools/postcss-extend-rule).
-- 😃 [Use icons from any icon sets, with no compromise](https://github.com/antfu/unplugin-icons)
-- ✂️ Pages Code Splitting out of the box
-- 🔔 Server Driven toast notification system with queue in place
-- 🐋 [VSCode Dev Container](https://code.visualstudio.com/docs/remote/containers) with everything you need to start developing
-- 🪲 Debug with [Ray](https://spatie.be/docs/ray/v1/introduction) on [port 23517](http://localhost:23517/) by default
-- 👮 Enforce code quality with [ESLint](https://eslint.org/) and [StandardJS](https://standardjs.com/)
+-   ⏩ [Inertia.js](https://inertiajs.com/)
+-   🔰 [Vue 3](https://github.com/vuejs/core)
+-   ⚡️ [Vite](https://vitejs.dev/)
+-   🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227) for Vue
+-   📦 [Components auto importing](https://github.com/antfu/unplugin-vue-components)
+-   ⬇️ [Common Vue and Inertia APIs auto importing](https://github.com/antfu/unplugin-auto-import)
+-   ❄️ [Quasar Framework](https://quasar.dev/) configured out of the box with over 70 ready to use Material Design components
+-   🎨 [Tailwind CSS](https://tailwindcss.com/) configured with common [PostCSS](https://postcss.org/) plugins, like [nesting](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting) and [extend rule](https://github.com/csstools/postcss-extend-rule).
+-   😃 [Use icons from any icon sets, with no compromise](https://github.com/antfu/unplugin-icons)
+-   ✂️ Pages Code Splitting out of the box
+-   🔔 Server Driven toast notification system with queue in place
+-   🐋 [VSCode Dev Container](https://code.visualstudio.com/docs/remote/containers) with everything you need to start developing
+-   🪲 Debug with [Ray](https://spatie.be/docs/ray/v1/introduction) on [port 23517](http://localhost:23517/) by default
+-   👮 Enforce code quality with [ESLint](https://eslint.org/) and [StandardJS](https://standardjs.com/)
 
 ## Quick Start
 
