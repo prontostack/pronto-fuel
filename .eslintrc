@@ -29,5 +29,9 @@
         "useAttrs": true,
         "useForm": true,
         "usePage": true
-    }
+    },
+    "ignorePatterns": [
+        "node_modules/**/*",
+        "vendor/**/*"
+    ]
 }

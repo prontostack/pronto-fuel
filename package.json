@@ -3,7 +3,8 @@
     "scripts": {
         "dev": "vite --host 0.0.0.0",
         "start": "npm run dev",
-        "build": "vite build"
+        "build": "vite build",
+        "lint": "npx eslint ."
     },
     "devDependencies": {
         "@iconify-json/mdi": "^1.0.16",
