@@ -18,6 +18,11 @@ export default {
       imports: [
         'vue',
         {
+          '@inertiajs/inertia': [
+            'Inertia'
+          ]
+        },
+        {
           '@inertiajs/inertia-vue3': [
             'usePage',
             'useForm'

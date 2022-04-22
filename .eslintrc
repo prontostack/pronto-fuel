@@ -16,6 +16,7 @@
         "computed": true,
         "defineEmits": true,
         "defineProps": true,
+        "Inertia": true,
         "inject": true,
         "onBeforeUnmount": true,
         "onBeforeUpdate": true,
