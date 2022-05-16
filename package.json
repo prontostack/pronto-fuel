@@ -1,8 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite --host 0.0.0.0",
-        "start": "npm run dev",
+        "serve": "vite",
+        "start": "vite --host 0.0.0.0",
         "build": "vite build",
         "lint": "npx eslint ."
     },

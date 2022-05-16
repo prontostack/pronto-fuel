@@ -44,7 +44,7 @@ php artisan migrate
 npm install
 
 # Lift Vite's development server
-npm start
+npm run serve
 
 # Go to http://localhost
 ```
