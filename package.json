@@ -2,9 +2,17 @@
     "private": true,
     "scripts": {
         "serve": "vite",
-        "start": "vite --host 0.0.0.0",
+        "serve:on:docker": "vite --host 0.0.0.0",
+        "start": "concurrently \"npm:serve:on:docker\" \"npm:backend\"",
+        "start:cy": "concurrently \"npm:serve:on:docker\" \"npm:backend:cy\"",
+        "start:preview": "concurrently \"npm:build:preview\" \"npm:backend:preview\"",
         "build": "vite build",
-        "lint": "npx eslint ."
+        "build:preview": "vite build --mode preview",
+        "cy": "cypress open --browser chrome",
+        "lint": "npx eslint .",
+        "backend": "php -d variables_order=EGPCS artisan serve --host=0.0.0.0 --port=80",
+        "backend:cy": "php -d variables_order=EGPCS artisan serve --env=cypress --host=0.0.0.0 --port=80",
+        "backend:preview": "php -d variables_order=EGPCS artisan serve --env=preview --host=0.0.0.0 --port=80"
     },
     "devDependencies": {
         "@iconify-json/mdi": "^1.0.16",
@@ -19,8 +27,10 @@
         "@vue/compiler-sfc": "^3.0.5",
         "autoprefixer": "^10.2.4",
         "axios": "^0.21",
+        "concurrently": "^7.2.1",
         "dotenv": "^14.3.2",
         "eslint-config-standard": "^16.0.3",
+        "eslint-plugin-cypress": "^2.12.1",
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^5.2.0",

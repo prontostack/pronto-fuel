@@ -1,5 +1,9 @@
+/cypress/screenshots
+/cypress/support/routes.json
+/cypress/videos
 /node_modules
 /public/hot
+/public/dist
 /public/storage
 /storage/*.key
 /vendor

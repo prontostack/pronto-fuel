@@ -46,6 +46,9 @@ npm install
 # Lift Vite's development server
 npm run serve
 
+# Lift the PHP built in server
+php artisan serve
+
 # Go to http://localhost
 ```
 
@@ -92,7 +95,7 @@ npm install
 # reopen it. See Troubleshooting below for more info.
 # *****************************************************************
 
-# Lift Vite's development server
+# Lift the PHP built in server and Vite's devserver
 npm start
 
 # Go to http://localhost

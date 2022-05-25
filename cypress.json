@@ -1,0 +1,13 @@
+{
+    "baseUrl": "http://localhost",
+    "chromeWebSecurity": false,
+    "retries": 2,
+    "defaultCommandTimeout": 5000,
+    "watchForFileChanges": true,
+    "integrationFolder": "cypress/integration",
+    "pluginsFile": "cypress/plugins/index.js",
+    "videosFolder": "cypress/videos",
+    "supportFile": "cypress/support/index.js",
+    "screenshotsFolder": "cypress/screenshots",
+    "fixturesFolder": "cypress/fixture"
+}

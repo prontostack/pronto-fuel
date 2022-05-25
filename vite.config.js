@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -5,131 +6,140 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { QuasarResolver } from 'unplugin-vue-components/resolvers'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
-const Dotenv = require('dotenv')
-const { resolve } = require('path')
+import { resolve } from 'path'
+import { existsSync } from 'fs'
 
-Dotenv.config()
+export default ({ mode }) => {
+  const fallbackEnv = resolve(__dirname, '.env')
+  const specificEnv = fallbackEnv + '.' + mode
 
-const ASSET_URL = process.env.ASSET_URL || ''
+  dotenv.config({
+    path: existsSync(specificEnv)
+      ? specificEnv
+      : fallbackEnv
+  })
 
-export default {
-  plugins: [
-    AutoImport({
-      imports: [
-        'vue',
-        {
-          '@inertiajs/inertia': [
-            'Inertia'
-          ]
-        },
-        {
-          '@inertiajs/inertia-vue3': [
-            'usePage',
-            'useForm'
-          ]
-        }
-      ]
-    }),
+  return {
+    plugins: [
+      AutoImport({
+        imports: [
+          'vue',
+          {
+            '@inertiajs/inertia': [
+              'Inertia'
+            ]
+          },
+          {
+            '@inertiajs/inertia-vue3': [
+              'usePage',
+              'useForm'
+            ]
+          }
+        ]
+      }),
 
-    Components({
-      dirs: [
-        'Components',
-        'Layouts'
-      ],
-      extensions: [
-        'vue'
-      ],
-      directoryAsNamespace: true,
-      deep: true,
-      resolvers: [
-        QuasarResolver(),
-        IconsResolver(),
-        (name) => {
-          if (name === 'Head') {
-            return {
-              importName: 'Head',
-              path: '@inertiajs/inertia-vue3'
+      Components({
+        dirs: [
+          'Components',
+          'Layouts'
+        ],
+        extensions: [
+          'vue'
+        ],
+        directoryAsNamespace: true,
+        deep: true,
+        resolvers: [
+          QuasarResolver(),
+          IconsResolver(),
+          (name) => {
+            if (name === 'Head') {
+              return {
+                importName: 'Head',
+                path: '@inertiajs/inertia-vue3'
+              }
+            }
+
+            if (name === 'Link') {
+              return {
+                importName: 'Link',
+                path: '@inertiajs/inertia-vue3'
+              }
             }
           }
+        ]
+      }),
 
-          if (name === 'Link') {
-            return {
-              importName: 'Link',
-              path: '@inertiajs/inertia-vue3'
-            }
+      Icons({
+        autoInstall: true
+      }),
+
+      {
+        name: 'vite:inertia:layout',
+        transform: (code) => {
+          if (!/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/.test(code)) {
+            return
           }
-        }
-      ]
-    }),
 
-    Icons({
-      autoInstall: true
-    }),
+          const isTypeScript = /lang=['"]ts['"]/.test(code)
 
-    {
-      name: 'vite:inertia:layout',
-      transform: (code) => {
-        if (!/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/.test(code)) {
-          return
-        }
-
-        const isTypeScript = /lang=['"]ts['"]/.test(code)
-
-        return code.replace(/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/, (_, __, layoutName) => `
+          return code.replace(/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/, (_, __, layoutName) => `
           <script${isTypeScript ? ' lang="ts"' : ''}>
           import layout from '@/Layouts/${layoutName ?? 'Guest'}.vue'
           export default { layout }
           </script>
           <template>
         `)
-      }
-    },
+        }
+      },
 
-    vue({
-      template: { transformAssetUrls }
-    }),
+      vue({
+        template: { transformAssetUrls }
+      }),
 
-    quasar({
-      autoImportComponentCase: 'combined'
+      quasar({
+        autoImportComponentCase: 'combined'
       /**
        * Uncomment this if you want to customize Quasar variables
        * @see https://quasar.dev/style/sass-scss-variables
        *
        * sassVariables: '@/assets/quasar-variables.scss'
        */
-    })
-  ],
+      })
+    ],
 
-  root: 'resources/frontend',
-  base: ASSET_URL,
+    root: 'resources/frontend',
+    base: process.env.VITE_BASE,
 
-  build: {
-    outDir: resolve(__dirname, 'public/dist'),
-    emptyOutDir: true,
-    manifest: true,
-    target: 'es2018',
-    rollupOptions: {
-      input: 'app.js'
+    build: {
+      outDir: resolve(__dirname, 'public/dist'),
+      assetsDir: '',
+      emptyOutDir: true,
+      manifest: true,
+      target: 'es2018',
+      rollupOptions: {
+        input: 'app.js'
+      }
+    },
+
+    server: {
+      strictPort: true,
+      port: 3000,
+      origin: process.env.ASSET_URL
+    },
+
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, 'resources/frontend')
+      }
+    },
+
+    optimizeDeps: {
+      include: [
+        'vue',
+        '@inertiajs/inertia',
+        '@inertiajs/inertia-vue3',
+        'axios'
+      ]
     }
-  },
-
-  server: {
-    strictPort: true,
-    port: 3000
-  },
-
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'resources/frontend')
-    }
-  },
-
-  optimizeDeps: {
-    include: [
-      'vue',
-      '@inertiajs/inertia',
-      '@inertiajs/inertia-vue3',
-      'axios'
-    ]
   }
 }
