@@ -1,10 +1,16 @@
+/cypress/screenshots
+/cypress/support/routes.json
+/cypress/videos
 /node_modules
 /public/hot
+/public/dist
 /public/storage
 /storage/*.key
 /vendor
 .env
 .env.backup
+.env.cypress
+.env.preview
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
