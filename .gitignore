@@ -9,6 +9,8 @@
 /vendor
 .env
 .env.backup
+.env.cypress
+.env.preview
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
