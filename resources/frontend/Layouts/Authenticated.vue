@@ -91,29 +91,14 @@
     </q-drawer>
 
     <q-page-container>
-      <div class="tw-p-6">
+      <FadeTransition>
         <slot />
-      </div>
+      </FadeTransition>
     </q-page-container>
   </q-layout>
-  <Toasts />
-  <q-ajax-bar
-    ref="loadingIndicator"
-    position="top"
-    color="info"
-    size="2px"
-    skip-hijack
-  />
 </template>
 
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
-
-const loadingIndicator = ref(null)
-
-Inertia.on('start', () => loadingIndicator.value.start())
-Inertia.on('finish', () => loadingIndicator.value.stop())
-
 const leftDrawerOpen = ref(false)
 
 const toggleLeftDrawer = () => {

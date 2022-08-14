@@ -1,19 +1,35 @@
+import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { defineConfig } from 'vite'
 import { QuasarResolver } from 'unplugin-vue-components/resolvers'
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
-const Dotenv = require('dotenv')
-const { resolve } = require('path')
+import { resolve } from 'path'
 
-Dotenv.config()
-
-const ASSET_URL = process.env.ASSET_URL || ''
-
-export default {
+export default defineConfig({
   plugins: [
+    laravel({
+      input: 'resources/frontend/app.js',
+      ssr: 'resources/frontend/ssr.js'
+    }),
+
+    vue({
+      template: { transformAssetUrls }
+    }),
+
+    quasar({
+      autoImportComponentCase: 'combined'
+      /**
+       * Uncomment this if you want to customize Quasar variables
+       * @see https://quasar.dev/style/sass-scss-variables
+       *
+       * sassVariables: '@/assets/quasar-variables.scss'
+       */
+    }),
+
     AutoImport({
       imports: [
         'vue',
@@ -27,14 +43,15 @@ export default {
             'usePage',
             'useForm'
           ]
-        }
+        },
+        'pinia'
       ]
     }),
 
     Components({
       dirs: [
-        'Components',
-        'Layouts'
+        './resources/frontend/Components',
+        './resources/frontend/Layouts'
       ],
       extensions: [
         'vue'
@@ -68,68 +85,54 @@ export default {
 
     {
       name: 'vite:inertia:layout',
-      transform: (code) => {
-        if (!/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/.test(code)) {
+      enforce: 'pre',
+      transform: (code, id) => {
+        const layoutRegex = /<template +layout(?: *= *['"](?:(?:([\w|,]+):)?([\w|,]+))['"] *)?>/
+
+        if (!layoutRegex.test(code)) {
           return
         }
 
         const isTypeScript = /lang=['"]ts['"]/.test(code)
 
-        return code.replace(/<template +layout(?: *= *['"](?:(?:(\w+):)?(\w+))['"] *)?>/, (_, __, layoutName) => `
-          <script${isTypeScript ? ' lang="ts"' : ''}>
-          import layout from '@/Layouts/${layoutName ?? 'Guest'}.vue'
-          export default { layout }
-          </script>
-          <template>
-        `)
+        return code.replace(layoutRegex, (_, __, layoutNames) => {
+          const layoutImports = layoutNames.split(',').map((layoutName) => `import ${layoutName} from '@/Layouts/${layoutName}.vue'`)
+
+          const newCode = `
+            <script${isTypeScript ? ' lang="ts"' : ''}>
+            ${layoutImports.join('\n')}
+            export default {
+              layout: [${layoutNames}]
+            }
+            </script>
+            <template>
+          `
+
+          return newCode
+        })
       }
-    },
-
-    vue({
-      template: { transformAssetUrls }
-    }),
-
-    quasar({
-      autoImportComponentCase: 'combined'
-      /**
-       * Uncomment this if you want to customize Quasar variables
-       * @see https://quasar.dev/style/sass-scss-variables
-       *
-       * sassVariables: '@/assets/quasar-variables.scss'
-       */
-    })
+    }
   ],
 
-  root: 'resources/frontend',
-  base: ASSET_URL,
+  // Uncomment this if you're not inside Docker
+  // server: {
+  //   port: 3000
+  // },
 
-  build: {
-    outDir: resolve(__dirname, 'public/dist'),
-    emptyOutDir: true,
-    manifest: true,
-    target: 'es2018',
-    rollupOptions: {
-      input: 'app.js'
-    }
-  },
-
+  // Delete this if you're not inside docker
+  // and uncomment above
   server: {
-    strictPort: true,
-    port: 3000
+    host: '0.0.0.0',
+    port: 3000,
+    hmr: {
+      host: 'localhost',
+      port: 3000
+    }
   },
 
   resolve: {
     alias: {
       '@': resolve(__dirname, 'resources/frontend')
     }
-  },
-
-  optimizeDeps: {
-    include: [
-      'vue',
-      '@inertiajs/inertia',
-      '@inertiajs/inertia-vue3',
-      'axios'
-    ]
   }
-}
+})

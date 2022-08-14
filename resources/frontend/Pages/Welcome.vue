@@ -1,8 +1,8 @@
-<template>
-  <Head title="Welcome" />
+<template layout="AppShell">
   <div
     class="tw-relative tw-flex tw-items-top tw-justify-center tw-min-h-screen tw-bg-gray-100 dark:tw-bg-gray-900 sm:tw-items-center sm:tw-pt-0"
   >
+    <Head title="Welcome" />
     <div
       v-if="canLogin"
       class="tw-hidden tw-fixed tw-top-0 tw-right-0 tw-px-6 tw-py-4 sm:tw-block"
@@ -56,65 +56,134 @@
         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2">
           <div class="tw-p-6">
             <div class="tw-flex tw-items-center">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                class="tw-w-8 tw-h-8 tw-text-gray-500"
-              >
-                <path
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
+              <div class="tw-flex tw-justify-center tw-w-[32px] tw-h-[32px]">
+                <i-mdi-bell-outline class="tw-text-2xl tw-text-gray-500" />
+              </div>
               <div class="tw-ml-4 tw-text-lg tw-leading-7 tw-font-semibold">
                 <a
                   href="https://laravel.com/docs"
                   class="tw-underline tw-text-gray-900 dark:tw-text-white"
-                >Documentation</a>
+                >Server Driven Notifications</a>
               </div>
             </div>
 
             <div class="tw-ml-12">
               <div
-                class="tw-mt-2 tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm"
+                class="tw-mt-2 tw-mb-3 tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm"
               >
-                Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                Pronto Fuel enables you to show toast notifications from a simple method call on the server.
+              </div>
+              <div>
+                <Link
+                  href="/notify/success"
+                  method="post"
+                  as="button"
+                >
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="positive"
+                  >
+                    Success
+                  </q-btn>
+                </Link>
+                <Link
+                  href="/notify/info"
+                  method="post"
+                  as="button"
+                >
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="info"
+                  >
+                    Info
+                  </q-btn>
+                </Link>
+                <Link
+                  href="/notify/warning"
+                  method="post"
+                  as="button"
+                >
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="warning"
+                  >
+                    Warning
+                  </q-btn>
+                </Link>
+                <Link
+                  href="/notify/error"
+                  method="post"
+                  as="button"
+                >
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="negative"
+                  >
+                    Error
+                  </q-btn>
+                </Link>
               </div>
             </div>
           </div>
 
           <div class="tw-p-6 tw-border-t tw-border-gray-200 dark:tw-border-gray-700 md:tw-border-t-0 md:tw-border-l">
             <div class="tw-flex tw-items-center">
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                class="tw-w-8 tw-h-8 tw-text-gray-500"
-              >
-                <path
-                  d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                />
-                <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+              <div class="tw-flex tw-justify-center tw-w-[32px] tw-h-[32px]">
+                <i-mdi-comment-multiple-outline class="tw-text-2xl tw-text-gray-500" />
+              </div>
               <div class="tw-ml-4 tw-text-lg tw-leading-7 tw-font-semibold">
                 <a
                   href="https://laracasts.com"
                   class="tw-underline tw-text-gray-900 dark:tw-text-white"
-                >Laracasts</a>
+                >Server Driven Dialogs</a>
               </div>
             </div>
 
             <div class="tw-ml-12">
               <div
-                class="tw-mt-2 tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm"
+                class="tw-mt-2 tw-mb-3 tw-text-gray-600 dark:tw-text-gray-400 tw-text-sm"
               >
-                Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                With Pronto Fuel you can write controllers as you normally do, but get the contents of the page to open on modals and slideovers.
+              </div>
+              <div>
+                <Link href="/dialog/modal">
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="primary"
+                  >
+                    Modal
+                  </q-btn>
+                </Link>
+                <Link href="/dialog/slideover/left">
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="primary"
+                  >
+                    SlideOver from the left
+                  </q-btn>
+                </Link>
+                <Link href="/dialog/slideover/right">
+                  <q-btn
+                    class="tw-mb-2 tw-mr-2"
+                    outline
+                    size="sm"
+                    color="primary"
+                  >
+                    SlideOver from the right
+                  </q-btn>
+                </Link>
               </div>
             </div>
           </div>

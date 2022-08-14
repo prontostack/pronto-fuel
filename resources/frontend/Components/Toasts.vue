@@ -28,7 +28,6 @@ const toasts = computed(() => {
 
 const renderToasts = (toastsSource) => {
   toastsSource.forEach((toast) => {
-    console.log('test')
     notify(toast)
   })
 }

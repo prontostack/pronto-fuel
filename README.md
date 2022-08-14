@@ -10,44 +10,16 @@
 -   🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227) for Vue
 -   📦 [Components auto importing](https://github.com/antfu/unplugin-vue-components)
 -   ⬇️ [Common Vue and Inertia APIs auto importing](https://github.com/antfu/unplugin-auto-import)
--   ❄️ [Quasar Framework](https://quasar.dev/) configured out of the box with over 70 ready to use Material Design components
--   🎨 [Tailwind CSS](https://tailwindcss.com/) configured with common [PostCSS](https://postcss.org/) plugins, like [nesting](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting) and [extend rule](https://github.com/csstools/postcss-extend-rule).
--   😃 [Use icons from any icon sets, with no compromise](https://github.com/antfu/unplugin-icons)
 -   ✂️ Pages Code Splitting out of the box
 -   🔔 Server Driven toast notification system with queue in place
+-   💬 Server Driven dialogs
+-   ⚓ Inline Inertia Persistent Layouts
+-   🎨 [Tailwind CSS](https://tailwindcss.com/) configured with common [PostCSS](https://postcss.org/) plugins, like [nesting](https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting) and [extend rule](https://github.com/csstools/postcss-extend-rule).
+-   ❄️ [Quasar Framework](https://quasar.dev/) configured out of the box with over 70 ready to use Material Design components
+-   😃 [Use icons from any icon sets, with no compromise](https://github.com/antfu/unplugin-icons)
 -   🐋 [VSCode Dev Container](https://code.visualstudio.com/docs/remote/containers) with everything you need to start developing
 -   🪲 Debug with [Ray](https://spatie.be/docs/ray/v1/introduction) on [port 23517](http://localhost:23517/) by default
 -   👮 Enforce code quality with [ESLint](https://eslint.org/) and [StandardJS](https://standardjs.com/)
-
-## Quick Start
-
-```bash
-# Clone the repo
-git clone git@github.com:prontostack/pronto-fuel.git my-app
-
-# Enter the project directory
-cd my-app
-
-# Create a .env files based on the provided example one
-cp .env.example .env
-
-# Install PHP dependencies
-composer install
-
-# Generate an APP key for security
-php artisan key:generate
-
-# Create the database tables
-php artisan migrate
-
-# Instal frontend dependencies
-npm install
-
-# Lift Vite's development server
-npm run serve
-
-# Go to http://localhost
-```
 
 ## Quick Start with VSCode Dev Container
 
@@ -93,6 +65,43 @@ npm install
 # *****************************************************************
 
 # Lift Vite's development server
+npm start
+
+# Go to http://localhost
+```
+
+## Quick Start
+
+```bash
+# Clone the repo
+git clone git@github.com:prontostack/pronto-fuel.git my-app
+
+# Enter the project directory
+cd my-app
+
+# Create a .env files based on the provided example one
+cp .env.example .env
+
+# Install PHP dependencies
+composer install
+
+# Generate an APP key for security
+php artisan key:generate
+
+# Create the database tables
+php artisan migrate
+
+# Instal frontend dependencies
+npm install
+
+# Update server configs on vite.config.js
+# to be like this
+server: {
+    port: 3000
+},
+
+# Lift Vite's development server
+
 npm start
 
 # Go to http://localhost

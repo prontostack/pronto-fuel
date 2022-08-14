@@ -22,7 +22,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard', [
@@ -36,6 +36,21 @@ Route::get('/account', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('account.index');
 
-Route::post('/notify', function () {
-    return back()->toast('This notification comes from the server side =)');
+Route::post('/notify/{type}', function ($type) {
+    return back()->toast('This notification comes from the server side =)', $type);
+});
+
+Route::get('/dialog/{type}/{position?}', function ($type, $position = null) {
+    $page = [
+        'modal' => 'WelcomeModal',
+        'slideover' => 'WelcomeSlideOver'
+    ][$type];
+
+    return Inertia::modal($page)
+        ->with([
+            'title' => 'One modal to rule them all!',
+            'message' => 'That\'s right! I\'m a modal coming from the far, far away kingdom of the Server...',
+            'position' => $position
+        ])
+        ->baseRoute('welcome');
 });

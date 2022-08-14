@@ -7,13 +7,18 @@
     "service": "laravel.test",
     "workspaceFolder": "/var/www/html",
     "settings": {
+        "emmet.includeLanguages": {
+            "vue-html": "html",
+            "vue": "html"
+        },
+        "volar.completion.autoImportComponent": false,
         "[vue]": {
             "editor.defaultFormatter": "dbaeumer.vscode-eslint",
             "editor.tabSize": 2,
         },
         "[javascript]": {
             "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-        },
+        }
     },
     "extensions": [
         "mikestead.dotenv",
@@ -27,7 +32,7 @@
         "onecentlin.laravel5-snippets",
         "amiralizadeh9480.laravel-extra-intellisense",
         "eamodio.gitlens",
-        "johnsoncodehk.volar",
+        "Vue.volar",
         "EditorConfig.EditorConfig",
         "streetsidesoftware.code-spell-checker",
         "esbenp.prettier-vscode",
