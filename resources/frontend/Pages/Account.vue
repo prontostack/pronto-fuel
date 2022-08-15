@@ -1,5 +1,5 @@
 <template layout="AppShell,Authenticated">
-  <div>
+  <div class="tw-p-6">
     <Head :title="title" />
 
     <h1 class="text-h4">

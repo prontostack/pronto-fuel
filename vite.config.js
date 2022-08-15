@@ -90,7 +90,7 @@ export default defineConfig({
         const layoutRegex = /<template +layout(?: *= *['"](?:(?:([\w|,]+):)?([\w|,]+))['"] *)?>/
 
         if (!layoutRegex.test(code)) {
-          return
+          return code
         }
 
         const isTypeScript = /lang=['"]ts['"]/.test(code)
