@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AccountInfoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,11 +31,10 @@ Route::get('/dashboard', function () {
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/account', function () {
-    return Inertia::render('Account', [
-        'title' => 'My Account'
-    ]);
-})->middleware(['auth', 'verified'])->name('account.index');
+Route::get('/account', [AccountInfoController::class, 'edit'])
+    ->middleware(['auth', 'verified'])->name('account.info.edit');
+Route::put('/account', [AccountInfoController::class, 'update'])
+    ->middleware(['auth', 'verified'])->name('account.info.update');
 
 Route::post('/notify/{type}', function ($type) {
     return back()->toast('This notification comes from the server side =)', $type);
@@ -46,11 +46,10 @@ Route::get('/dialog/{type}/{position?}', function ($type, $position = null) {
         'slideover' => 'WelcomeSlideOver'
     ][$type];
 
-    return Inertia::modal($page)
-        ->with([
-            'title' => 'One modal to rule them all!',
-            'message' => 'That\'s right! I\'m a modal coming from the far, far away kingdom of the Server...',
-            'position' => $position
-        ])
+    return Inertia::modal($page, [
+        'title' => 'One modal to rule them all!',
+        'message' => 'That\'s right! I\'m a modal coming from the far, far away kingdom of the Server...',
+        'position' => $position
+    ])
         ->baseRoute('welcome');
 });

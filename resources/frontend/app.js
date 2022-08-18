@@ -29,7 +29,6 @@ createInertiaApp({
   setup ({ el, app, props, plugin }) {
     return createApp({ render: () => h(app, props) })
       .use(createPinia())
-      .use(plugin)
       .use(Notifications)
       .use(Quasar, {
         iconSet: quasarIconSet
@@ -37,6 +36,7 @@ createInertiaApp({
       .use(modal, {
         resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'))
       })
+      .use(plugin)
       .mixin({
         methods: {
           route: window.route

@@ -154,7 +154,7 @@
                 With Pronto Fuel you can write controllers as you normally do, but get the contents of the page to open on modals and slideovers.
               </div>
               <div>
-                <Link href="/dialog/modal">
+                <DialogLink href="/dialog/modal">
                   <q-btn
                     class="tw-mb-2 tw-mr-2"
                     outline
@@ -163,8 +163,8 @@
                   >
                     Modal
                   </q-btn>
-                </Link>
-                <Link href="/dialog/slideover/left">
+                </DialogLink>
+                <DialogLink href="/dialog/slideover/left">
                   <q-btn
                     class="tw-mb-2 tw-mr-2"
                     outline
@@ -173,8 +173,8 @@
                   >
                     SlideOver from the left
                   </q-btn>
-                </Link>
-                <Link href="/dialog/slideover/right">
+                </DialogLink>
+                <DialogLink href="/dialog/slideover/right">
                   <q-btn
                     class="tw-mb-2 tw-mr-2"
                     outline
@@ -183,7 +183,7 @@
                   >
                     SlideOver from the right
                   </q-btn>
-                </Link>
+                </DialogLink>
               </div>
             </div>
           </div>

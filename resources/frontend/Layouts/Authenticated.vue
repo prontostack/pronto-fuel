@@ -39,7 +39,7 @@
 
           <q-list>
             <NavLink
-              :href="route('account.index')"
+              :href="route('account.info.edit')"
               class="tw-w-full tw-text-left"
             >
               <template #icon="icon">

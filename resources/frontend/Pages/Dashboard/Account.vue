@@ -5,11 +5,14 @@
     <h1 class="text-h4">
       {{ title }}
     </h1>
+
+    <Form v-bind="form" />
   </div>
 </template>
 
 <script setup>
 defineProps({
-  title: String
+  title: String,
+  form: Object
 })
 </script>
