@@ -13,6 +13,11 @@
         "vue/multi-word-component-names": "off"
     },
     "globals": {
+        // General
+        "nextTick": true,
+        "defineComponent": true,
+        "defineAsyncComponent": true,
+        "defineCustomElement": true,
         // Vue Reactivity: Core
         "ref": true,
         "computed": true,

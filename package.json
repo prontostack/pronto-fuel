@@ -3,7 +3,8 @@
     "scripts": {
         "dev": "vite",
         "start": "vite",
-        "build": "vite build && vite build --ssr",
+        "build": "vite build",
+        "build-ssr": "vite build && vite build --ssr",
         "ssr": "node bootstrap/ssr/ssr.mjs",
         "lint": "npx eslint ."
     },
