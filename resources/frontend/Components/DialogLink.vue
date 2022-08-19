@@ -1,7 +1,7 @@
 <template>
   <Link
-    :preserve-state="true"
-    :preserve-scroll="true"
+    preserve-state
+    preserve-scroll
     :only="['modal']"
   >
     <slot />
