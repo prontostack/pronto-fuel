@@ -37,8 +37,8 @@
           Dashboard
         </NavLink>
         <NavLink
-          :href="route('account.info.edit')"
-          :active="route().current('account.info.edit')"
+          :href="route('account.index')"
+          :active="route().current('account.index')"
         >
           <template #icon>
             <i-mdi-account-outline />
