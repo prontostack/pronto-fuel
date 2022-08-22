@@ -75,8 +75,8 @@ const containerColors = {
     'tw-shadow-danger-500/30'
   ],
   warning: [
-    'tw-bg-warning-500',
-    'tw-shadow-warning-500/30'
+    'tw-bg-warning-400',
+    'tw-shadow-warning-400/30'
   ],
   info: [
     'tw-bg-info-500',

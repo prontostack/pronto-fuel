@@ -4,14 +4,15 @@
 
 @layer base {
     a {
-        @apply tw-text-primary-500;
+        @apply tw-text-primary-500 dark:tw-text-primary-400;
     }
 
+    a:hover,
     a:hover {
-        @apply tw-text-primary-400;
+        @apply tw-text-primary-700 dark:tw-text-primary-300;
     }
 
     a:focus {
-        @apply tw-outline-1 tw-outline-primary-200;
+        @apply tw-outline-1;
     }
 }

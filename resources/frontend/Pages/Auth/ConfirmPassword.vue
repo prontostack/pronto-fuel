@@ -4,7 +4,7 @@
 
     <AuthLogo />
 
-    <div class="tw-mb-4 tw-text-sm tw-text-gray-600">
+    <div class="tw-mb-4 tw-text-sm tw-opacity-60">
       This is a secure area of the application. Please confirm your password before continuing.
     </div>
 

@@ -8,8 +8,8 @@
     <q-ajax-bar
       ref="loadingIndicator"
       position="top"
-      color="primary"
-      size="3px"
+      color="accent"
+      size="4px"
       skip-hijack
     />
   </div>
@@ -18,6 +18,11 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
 import { Modal } from 'momentum-modal'
+import { useAppShell } from '@/store/app-shell'
+
+const { setDarkMode } = useAppShell()
+
+setDarkMode()
 
 const loadingIndicator = ref(null)
 

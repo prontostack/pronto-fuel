@@ -14,7 +14,7 @@
         "volar.completion.autoImportComponent": false,
         "[vue]": {
             "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-            "editor.tabSize": 2,
+            "editor.tabSize": 2
         },
         "[javascript]": {
             "editor.defaultFormatter": "dbaeumer.vscode-eslint"
@@ -37,11 +37,12 @@
         "streetsidesoftware.code-spell-checker",
         "esbenp.prettier-vscode",
         "bradlc.vscode-tailwindcss",
-        "sleistner.vscode-fileutils"
+        "sleistner.vscode-fileutils",
+        "sdras.vue-vscode-snippets"
     ],
     "remoteUser": "sail",
     // "forwardPorts": [],
     // "runServices": [],
     // "postCreateCommand": "apt-get update && apt-get install -y curl",
-    "shutdownAction": "stopCompose",
+    "shutdownAction": "stopCompose"
 }
