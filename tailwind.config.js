@@ -17,11 +17,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.blue,
-        accent: colors.violet,
+        primary: colors.violet,
+        accent: colors.fuchsia,
         success: colors.green,
         info: colors.blue,
-        warning: colors.yellow,
+        warning: colors.amber,
         danger: colors.red,
         default: colors.slate
       },

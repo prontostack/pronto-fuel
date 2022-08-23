@@ -21,18 +21,15 @@ export default defineConfig({
     }),
 
     quasar({
-      autoImportComponentCase: 'combined'
-      /**
-       * Uncomment this if you want to customize Quasar variables
-       * @see https://quasar.dev/style/sass-scss-variables
-       *
-       * sassVariables: '@/assets/quasar-variables.scss'
-       */
+      autoImportComponentCase: 'combined',
+      sassVariables: '@/assets/quasar.variables.scss'
     }),
 
     AutoImport({
       imports: [
         'vue',
+        'pinia',
+        'quasar',
         {
           '@inertiajs/inertia': [
             'Inertia'
@@ -43,15 +40,16 @@ export default defineConfig({
             'usePage',
             'useForm'
           ]
-        },
-        'pinia'
+        }
       ]
     }),
 
     Components({
       dirs: [
         './resources/frontend/Components',
-        './resources/frontend/Layouts'
+        './resources/frontend/FormInputs',
+        './resources/frontend/Layouts',
+        './resources/frontend/Transitions'
       ],
       extensions: [
         'vue'

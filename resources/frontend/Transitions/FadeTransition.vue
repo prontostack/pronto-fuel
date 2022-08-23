@@ -16,7 +16,7 @@ defineProps({
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity .4s ease;
 }
 
 .fade-enter-from,

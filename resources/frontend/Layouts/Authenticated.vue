@@ -1,94 +1,52 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header class="tw-bg-primary-500 text-white">
-      <q-toolbar>
+  <q-layout view="lhr lpr lfr">
+    <q-header>
+      <q-toolbar class="tw-bg-primary-800">
         <q-btn
           dense
           flat
           round
-          @click="toggleLeftDrawer"
+          @click="
+            ($q.screen.xs)
+              ? layout.navigationDrawer.isOpen = !layout.navigationDrawer.isOpen
+              : layout.navigationDrawer.mini = !layout.navigationDrawer.mini
+          "
         >
           <i-mdi-menu class="tw-text-lg" />
         </q-btn>
         <q-toolbar-title class="tw-flex tw-items-center">
-          <Link :href="route('dashboard')">
-            <ApplicationLogo class="tw-block tw-h-9 tw-w-auto tw-fill-white" />
-          </Link>
-          <span class="tw-font-extralight tw-ml-5">{{ $page.props.title }}</span>
+          <span class="tw-font-extralight">{{ $page.props.title }}</span>
         </q-toolbar-title>
         <q-space class="tw-hidden sm:tw-flex" />
-        <q-btn-dropdown
-          stretch
-          flat
-        >
-          <template #label>
-            <div class="row items-center no-wrap">
-              <q-avatar
-                size="26px"
-                class="sm:tw-mr-4"
-              >
-                <img
-                  :src="$page.props.auth.user.avatar"
-                >
-              </q-avatar>
-              <div class="tw-hidden sm:tw-block text-center">
-                {{ $page.props.auth.user.name }}
-              </div>
-            </div>
-          </template>
-
-          <q-list>
-            <NavLink
-              :href="route('account.info.edit')"
-              class="tw-w-full tw-text-left"
-            >
-              <template #icon="icon">
-                <i-mdi-account-circle-outline v-bind="icon" />
-              </template>
-              My Account
-            </NavLink>
-            <q-separator
-              inset
-              spaced
-            />
-            <NavLink
-              :href="route('logout')"
-              method="post"
-              as="button"
-              class="tw-w-full tw-text-left"
-            >
-              <template #icon="icon">
-                <i-mdi-power-standby v-bind="icon" />
-              </template>
-              Logout
-            </NavLink>
-          </q-list>
-        </q-btn-dropdown>
+        <AccountMenu />
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      side="left"
-      bordered
-      :width="240"
+    <NavDrawer
+      v-model:is-open="layout.navigationDrawer.isOpen"
+      v-model:mini="layout.navigationDrawer.mini"
     >
-      <q-scroll-area class="fit">
-        <q-list>
-          <NavLink
-            :href="route('dashboard')"
-            :active="route().current('dashboard')"
-          >
-            <template #icon="icon">
-              <i-mdi-home v-bind="icon" />
-            </template>
-            Dashboard
-          </NavLink>
-        </q-list>
-        <q-item />
-      </q-scroll-area>
-    </q-drawer>
+      <NavList bookmarker>
+        <NavLink
+          :href="route('dashboard')"
+          :active="route().current('dashboard')"
+        >
+          <template #icon>
+            <i-mdi-home-outline />
+          </template>
+          Dashboard
+        </NavLink>
+        <NavLink
+          :href="route('account.index')"
+          :active="route().current('account.index')"
+        >
+          <template #icon>
+            <i-mdi-account-outline />
+          </template>
+          Account
+        </NavLink>
+      </NavList>
+    </NavDrawer>
 
     <q-page-container>
       <FadeTransition>
@@ -99,9 +57,16 @@
 </template>
 
 <script setup>
-const leftDrawerOpen = ref(false)
+import { useLocalStorage } from '@vueuse/core'
 
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+const $q = useQuasar()
+
+const page = usePage()
+
+const layout = useLocalStorage(`authenticated-layout-${page.props.value.auth.user.id}`, {
+  navigationDrawer: {
+    isOpen: false,
+    mini: true
+  }
+})
 </script>
