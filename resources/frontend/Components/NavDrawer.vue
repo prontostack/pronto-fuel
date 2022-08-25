@@ -6,6 +6,7 @@
     :width="width"
     :mini-width="miniWidth"
     :mini="isDrawerMini"
+    :breakpoint="600"
     class="
       tw-bg-primary-50
       dark:tw-bg-slate-800

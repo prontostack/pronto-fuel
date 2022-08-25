@@ -6,6 +6,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { createPinia } from 'pinia'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
+import { i18nVue } from 'laravel-vue-i18n'
 import { Quasar } from 'quasar'
 import { modal } from 'momentum-modal'
 import quasarIconSet from 'quasar/icon-set/svg-mdi-v6'
@@ -22,6 +23,12 @@ createInertiaApp({
   setup ({ el, app, props, plugin }) {
     return createApp({ render: () => h(app, props) })
       .use(createPinia())
+      .use(i18nVue, {
+        resolve: async lang => {
+          const langs = import.meta.glob('../../lang/*.json')
+          return await langs[`../../lang/${lang}.json`]()
+        }
+      })
       .use(Notifications)
       .use(Quasar, {
         iconSet: quasarIconSet

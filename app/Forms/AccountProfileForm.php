@@ -6,16 +6,23 @@ use App\Fields\EmailField;
 use App\Fields\TextField;
 use Illuminate\Support\Facades\Auth;
 
-class AccountInfoForm extends Form
+class AccountProfileForm extends Form implements FormEditInterface
 {
-    protected function editData()
+    use FormEditTrait;
+
+    public function editResource()
     {
         return Auth::user();
     }
 
-    protected function updateUrl()
+    public function updateAction()
     {
-        return route('account.info.update');
+        return route('account.profile.update');
+    }
+
+    public function updatedToast()
+    {
+        return trans('account.profile.updated');
     }
 
     protected function fields()

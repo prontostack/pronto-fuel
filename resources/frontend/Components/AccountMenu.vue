@@ -32,8 +32,8 @@
       <q-separator />
       <NavList class="tw-w-full">
         <NavLink
-          :href="route('account.info.edit')"
-          :active="route().current('account.info.edit')"
+          :href="route('account')"
+          :active="route().current('account')"
         >
           <template #icon>
             <i-mdi-account-outline />

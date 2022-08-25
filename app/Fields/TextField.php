@@ -6,14 +6,18 @@ class TextField extends Field
 {
     protected function component()
     {
-        return 'q-input';
+        return 'TextField';
     }
 
     protected function binds()
     {
         return [
-            'type' => 'text',
-            'outlined' => true
+            'type' => 'text'
         ];
+    }
+
+    public function resolveData()
+    {
+        return $this->request->input($this->get('model'));
     }
 }

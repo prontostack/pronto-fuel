@@ -9,11 +9,14 @@ abstract class Field implements JsonSerializable
 {
     use DataGetterAndSetter;
 
+    protected $request;
+
     abstract protected function component();
     abstract protected function binds();
 
     public function __construct()
     {
+        $this->request = request();
     }
 
     public static function model(string $model)

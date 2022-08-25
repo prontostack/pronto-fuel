@@ -2,6 +2,7 @@
   <form
     :action="action"
     :method="method"
+    class="tw-space-y-4"
     @submit.prevent="submit"
   >
     <div
@@ -10,29 +11,68 @@
     >
       <component
         :is="field.component"
-        v-model="field.value"
+        v-model="form[field.model]"
         v-bind="field.binds"
+        :error="errors[field.model]"
       />
     </div>
+    <q-btn
+      color="primary"
+      type="submit"
+    >
+      Submit
+    </q-btn>
   </form>
 </template>
 
 <script>
+import { v4 as uuid } from 'uuid'
+
+const components = {}
+
+const imports = import.meta.glob('../Fields/*.vue')
+
+Object.keys(imports).forEach((filePath) => {
+  const componentName = filePath.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '')
+
+  components[componentName] = defineAsyncComponent(imports[filePath])
+})
+
 export default {
-  components: {
-    QInput: defineAsyncComponent(() => import('quasar/src/components/input/QInput'))
-  }
+  components
 }
 </script>
 
 <script setup>
-defineProps({
+const props = defineProps({
   action: String,
   method: String,
-  fields: Array
+  fields: Array,
+  resetOnSuccess: Boolean
 })
 
-const submit = () => {
+const formId = uuid()
 
+const formData = {
+  _method: props.method
 }
+
+props.fields.forEach((field) => {
+  formData[field.model] = field.value
+})
+
+const form = useForm(formData)
+
+const submit = () => {
+  form.post(props.action, {
+    errorBag: formId,
+    onSuccess: () => {
+      if (props.resetOnSuccess === true) {
+        form.reset()
+      }
+    }
+  })
+}
+
+const errors = computed(() => usePage().props.value?.errors[formId] || {})
 </script>

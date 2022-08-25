@@ -7,8 +7,7 @@ class EmailField extends TextField
     protected function binds()
     {
         return [
-            'type' => 'email',
-            'outlined' => true
+            'type' => 'email'
         ];
     }
 }
