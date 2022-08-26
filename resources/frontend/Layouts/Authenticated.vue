@@ -8,7 +8,7 @@
           round
           @click="
             ($q.screen.xs)
-              ? layout.navigationDrawer.isOpen = !layout.navigationDrawer.isOpen
+              ? isNavDrawerOpen = !isNavDrawerOpen
               : layout.navigationDrawer.mini = !layout.navigationDrawer.mini
           "
         >
@@ -23,7 +23,7 @@
     </q-header>
 
     <NavDrawer
-      v-model:is-open="layout.navigationDrawer.isOpen"
+      v-model:is-open="isNavDrawerOpen"
       v-model:mini="layout.navigationDrawer.mini"
     >
       <NavList bookmarker>
@@ -63,9 +63,10 @@ const $q = useQuasar()
 
 const page = usePage()
 
+const isNavDrawerOpen = ref($q.screen.gt.xs)
+
 const layout = useLocalStorage(`authenticated-layout-${page.props.value.auth.user.id}`, {
   navigationDrawer: {
-    isOpen: false,
     mini: true
   }
 })
