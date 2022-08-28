@@ -1,16 +1,17 @@
 <template>
   <q-drawer
-    v-model="isDrawerOpen"
     show-if-above
     side="left"
+    :model-value="isOpen"
     :width="width"
+    :mini="isMini"
     :mini-width="miniWidth"
-    :mini="isDrawerMini"
-    :breakpoint="600"
+    :breakpoint="breakpoint"
     class="
       tw-bg-primary-50
       dark:tw-bg-slate-800
     "
+    @update:model-value="emit('update:isOpen')"
   >
     <q-scroll-area class="fit">
       <div class="drawer__content">
@@ -49,41 +50,37 @@ const emit = defineEmits([
   'update:mini'
 ])
 
-const isDrawerOpen = computed({
-  get () {
-    if ($q.screen.gt.xs) {
-      return true
-    }
-
-    return props.isOpen
-  },
-  set (value) {
-    emit('update:isOpen', value)
-  }
-})
-
-const isDrawerMini = computed({
-  get () {
-    if ($q.screen.xs) {
-      return false
-    }
-
-    return props.mini
-  },
-  set (value) {
-    emit('update:mini', value)
-  }
-})
-
 const pixelWidth = computed(() => props.width + 'px')
 const pixelMiniWidth = computed(() => props.miniWidth + 'px')
 
-provide('mini', isDrawerMini)
+const isMini = computed({
+  get () { return props.mini },
+  set () { emit('update:mini') }
+})
+
+provide('mini', isMini)
 provide('width', props.width)
 provide('miniWidth', props.miniWidth)
 
 Inertia.on('navigate', () => {
-  emit('update:isOpen', false)
+  if (props.isOpen && $q.screen.xs) {
+    emit('update:isOpen', false)
+  }
+})
+
+const breakpoint = $q.screen.sizes.sm - 1
+let previousWidth = window.innerWidth
+
+window.addEventListener('resize', () => {
+  if ((previousWidth < breakpoint) && (breakpoint < window.innerWidth)) {
+    if (props.isOpen) {
+      emit('update:isOpen', false)
+    }
+
+    setTimeout(() => emit('update:isOpen', true), 1000)
+  }
+
+  previousWidth = window.innerWidth
 })
 </script>
 
