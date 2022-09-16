@@ -4,68 +4,33 @@
 
     <AuthLogo />
 
-    <form
-      class="tw-flex-col tw-space-y-2"
-      @submit.prevent="form.post(route('login'))"
-    >
-      <q-input
-        id="email"
-        v-model="form.email"
-        :error-message="errors.email"
-        :error="!!errors.email"
-        label="Email"
-        type="email"
-        autofocus
-        autocomplete="off"
-        required
-        outlined
-      />
+    <Form v-bind="form">
+      <template #submit="{ processing }">
+        <div class="tw-flex tw-items-center tw-justify-between">
+          <Link
+            v-if="form.resetPasswordUrl"
+            :href="form.resetPasswordUrl"
+          >
+            {{ form.trans.forgotPassword }}
+          </Link>
 
-      <q-input
-        id="password"
-        v-model="form.password"
-        :error-message="errors.password"
-        :error="!!errors.password"
-        label="Password"
-        type="password"
-        autocomplete="off"
-        required
-        outlined
-      />
-
-      <q-checkbox
-        v-model="form.remember"
-        label="Remember me"
-      />
-
-      <div class="tw-flex tw-items-center tw-justify-between">
-        <Link
-          v-if="canResetPassword"
-          :href="route('password.request')"
-        >
-          Forgot your password?
-        </Link>
-
-        <q-btn
-          :disabled="form.processing"
-          type="submit"
-          color="primary"
-          class="ml-4"
-        >
-          Log in
-        </q-btn>
-      </div>
-    </form>
+          <q-btn
+            :loading="processing"
+            :disabled="processing"
+            type="submit"
+            color="primary"
+            class="ml-4"
+          >
+            {{ form.trans.login }}
+          </q-btn>
+        </div>
+      </template>
+    </Form>
   </div>
 </template>
 
 <script setup>
-const props = defineProps({
-  canResetPassword: Boolean,
-  status: String,
-  form: Object,
-  errors: Object
+defineProps({
+  form: Object
 })
-
-const form = useForm(props.form)
 </script>

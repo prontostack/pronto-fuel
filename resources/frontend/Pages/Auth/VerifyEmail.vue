@@ -1,35 +1,46 @@
 <template layout="AppShell,Guest">
   <div>
-    <Head title="Email Verification" />
+    <Head :title="form.trans.title" />
 
     <AuthLogo />
 
-    <div class="tw-mb-4 tw-opacity-60">
-      Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
-    </div>
+    <FormCard
+      :title="form.trans.title"
+      :hint="form.trans.hint"
+      flat
+      class="bg-transparent"
+    >
+      <Form v-bind="form">
+        <template #submit="{ processing }">
+          <div class="tw-mt-4 tw-flex tw-items-center tw-justify-between">
+            <Btn
+              :disabled="processing"
+              :loading="processing"
+              :label="form.trans.submit"
+              type="submit"
+              color="primary"
+            />
 
-    <form @submit.prevent="form.post(route('verification.send'))">
-      <div class="tw-mt-4 tw-flex tw-items-center tw-justify-between">
-        <q-btn
-          :disabled="form.processing"
-          type="submit"
-          color="primary"
-        >
-          Resend Verification Email
-        </q-btn>
-
-        <Link
-          :href="route('logout')"
-          method="post"
-          as="button"
-        >
-          Log Out
-        </Link>
-      </div>
-    </form>
+            <Link
+              :href="form.logoutUrl"
+              method="post"
+              as="button"
+            >
+              <Btn
+                :label="form.trans.logout"
+                type="button"
+                flat
+              />
+            </Link>
+          </div>
+        </template>
+      </Form>
+    </FormCard>
   </div>
 </template>
 
 <script setup>
-const form = useForm()
+defineProps({
+  form: Object
+})
 </script>

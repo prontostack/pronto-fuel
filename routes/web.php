@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AccountPasswordController;
-use App\Http\Controllers\Dashboard\AccountProfileController;
-use App\Http\Controllers\Dashboard\AccountController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,21 +23,6 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 })->name('welcome');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', [
-        'title' => 'Dashboard'
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/account', [AccountController::class, 'edit'])
-    ->middleware(['auth', 'verified'])->name('account');
-
-Route::put('/account/profile', [AccountProfileController::class, 'update'])
-    ->middleware(['auth', 'verified'])->name('account.profile.update');
-
-Route::put('/account/password', [AccountPasswordController::class, 'update'])
-    ->middleware(['auth', 'verified'])->name('account.password.update');
 
 Route::post('/notify/{type}', function ($type) {
     return back()->toast('This notification comes from the server side =)', $type);

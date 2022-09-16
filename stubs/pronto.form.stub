@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Forms{{ PartialNamespace }};
+
+use App\Forms\Form;
+
+class {{ FormName }} extends Form
+{
+    protected function method()
+    {
+        return 'post';
+    }
+
+    protected function action()
+    {
+        return route('');
+    }
+
+    protected function fields()
+    {
+        return [
+            // ...
+        ];
+    }
+
+    protected function trans()
+    {
+        return [
+            // ...
+        ];
+    }
+
+    protected function props()
+    {
+        return [
+            // ...
+        ];
+    }
+
+    protected function toast()
+    {
+        return trans('');
+    }
+}

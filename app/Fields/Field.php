@@ -3,6 +3,7 @@
 namespace App\Fields;
 
 use App\Traits\DataGetterAndSetter;
+use Closure;
 use JsonSerializable;
 
 abstract class Field implements JsonSerializable
@@ -10,54 +11,102 @@ abstract class Field implements JsonSerializable
     use DataGetterAndSetter;
 
     protected $request;
+    protected $resolveOverride;
 
     abstract protected function component();
-    abstract protected function binds();
 
-    public function __construct()
+    public function __construct($model)
     {
         $this->request = request();
+
+        $this->set('model', $model);
+
+        $this->set('component', $this->component());
+
+        $this->setBinds();
     }
 
-    public static function model(string $model)
+    private function setBinds()
     {
-        $field = new static();
+        if (method_exists($this, 'binds')) {
+            $this->set('binds', $this->{'binds'}());
+        }
+    }
 
-        $field->set('model', $model);
+    public static function for(string $model)
+    {
+        $field = new static($model);
 
         return $field;
     }
 
     public function label(string $label)
     {
-        $this->set('label', $label);
+        $this->set('binds.label', $label);
+
         return $this;
     }
 
-    public function storeRules(array $rules)
+    public function required()
     {
-        $this->set('store_rules', $rules);
+        $this->set('binds.required', true);
+
         return $this;
     }
 
-    public function updateRules(array $rules)
+    public function value($value = null)
     {
-        $this->set('update_rules', $rules);
+        $this->set('value', $value);
+
         return $this;
+    }
+
+    public function rules($rules = [])
+    {
+        $this->set('rules', $rules);
+
+        return $this;
+    }
+
+    public function createRules($rules = [])
+    {
+        $this->set('createRules', $rules);
+
+        return $this;
+    }
+
+    public function editRules($rules = [])
+    {
+        $this->set('editRules', $rules);
+
+        return $this;
+    }
+
+    public function resolveData()
+    {
+        return $this->request->input($this->get('model'));
+    }
+
+    public function resolveWith($override)
+    {
+        $this->resolveOverride = $override;
+
+        return $this;
+    }
+
+    public function resolve()
+    {
+        if ($this->resolveOverride instanceof Closure) {
+            return ($this->resolveOverride)();
+        } else if ($this->resolveOverride) {
+            return $this->resolveOverride;
+        }
+
+        return $this->resolveData();
     }
 
     public function jsonSerialize()
     {
-        return [
-            'component' => $this->component(),
-            'model' => $this->get('model'),
-            'value' => $this->get('value'),
-            'binds' => array_replace_recursive(
-                $this->binds(),
-                [
-                    'label' => $this->get('label')
-                ]
-            )
-        ];
+        return $this->data;
     }
 }

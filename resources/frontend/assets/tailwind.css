@@ -15,4 +15,10 @@
     a:focus {
         @apply tw-outline-1;
     }
+
+    .tw-dark {
+        input {
+            color-scheme: dark;
+        }
+    }
 }

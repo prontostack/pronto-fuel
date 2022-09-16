@@ -11,7 +11,7 @@ module.exports = {
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
     './resources/frontend/**/*.vue',
-    './resources/prontostack/pronto-ui/**/*.vue'
+    './lang/**/*.php'
   ],
 
   theme: {

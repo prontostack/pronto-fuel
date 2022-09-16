@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ViewErrorBag;
 
 class ToastService
@@ -17,14 +16,14 @@ class ToastService
 
         $this->flashedToasts[] = $this->make(...$args);
 
-        Session::flash('toasts', $this->flashedToasts);
+        session()->flash('toasts', $this->flashedToasts);
 
         return $this;
     }
 
     public function validation($targets)
     {
-        Session::flash('validation_toasts', Arr::wrap($targets));
+        session()->flash('validation_toasts', Arr::wrap($targets));
 
         return $this;
     }
@@ -40,14 +39,37 @@ class ToastService
 
     public function getToasts()
     {
-        return Session::get('toasts') ?? [];
+        return session()->get('toasts', []);
+    }
+
+    public function getFortifyToasts()
+    {
+        if ($status = session()->get('status', null)) {
+            $messages = [
+                'two-factor-authentication-enabled' => [trans('account.2fa.unconfirmed'), 'info'],
+                'two-factor-authentication-confirmed' => [trans('account.2fa.enabled.label')],
+                'two-factor-authentication-disabled' => [trans('account.2fa.disabled.label'), 'info'],
+                'verification-link-sent' => [trans('auth.email_verification.link_sent')],
+                'profile-information-updated' => [trans('account.profile.updated')],
+                'password-updated' => [trans('account.password.updated')],
+                'recovery-codes-generated' => [trans('account.2fa.recovery_codes.renewed'), 'info'],
+            ];
+
+            if (array_key_exists($status, $messages)) {
+                return [$this->make(...$messages[$status])];
+            }
+
+            return [$this->make($status)];
+        }
+
+        return [];
     }
 
     public function getValidationToasts()
     {
-        $validationErrors = Session::get('errors', app(ViewErrorBag::class));
+        $validationErrors = session()->get('errors', app(ViewErrorBag::class));
 
-        $requestedValidationToasts = Session::get('validation_toasts') ?? [];
+        $requestedValidationToasts = session()->get('validation_toasts') ?? [];
 
         $validationToasts = [];
 
@@ -64,6 +86,7 @@ class ToastService
     {
         return array_merge(
             $this->getToasts(),
+            $this->getFortifyToasts(),
             $this->getValidationToasts()
         );
     }
