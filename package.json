@@ -23,7 +23,7 @@
         "@vueuse/components": "^9.1.0",
         "@vueuse/core": "^9.1.0",
         "autoprefixer": "^10.2.4",
-        "axios": "^0.21.4",
+        "axios": "0.21.4",
         "dotenv": "^16.0.1",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-import": "^2.25.4",
@@ -31,13 +31,13 @@
         "eslint-plugin-promise": "^6.0.0",
         "eslint-plugin-vue": "^9.3.0",
         "file-dialog": "^0.0.8",
-        "laravel-vite-plugin": "^0.6.0",
+        "laravel-vite-plugin": "^0.7.0",
         "lodash": "^4.17.19",
         "momentum-modal": "^0.1.11",
         "pinia": "^2.0.18",
         "postcss": "^8.2.13",
         "postcss-extend-rule": "^4.0.0",
-        "postcss-import": "^14.0.1",
+        "postcss-import": "^15.0.0",
         "postcss-nesting": "^10.1.2",
         "quasar": "^2.7.5",
         "sass": "^1.32.12",
@@ -45,12 +45,10 @@
         "unplugin-auto-import": "^0.11.1",
         "unplugin-icons": "^0.14.8",
         "unplugin-vue-components": "^0.22.4",
-        "uuid": "^8.3.2",
+        "uuid": "^9.0.0",
         "vite": "^3.0.4",
         "vue": "^3.0.5",
+        "vue-advanced-cropper": "^2.8.3",
         "vue3-otp-input": "^0.3.6"
-    },
-    "dependencies": {
-        "vue-advanced-cropper": "^2.8.3"
     }
 }
