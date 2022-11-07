@@ -82,7 +82,7 @@ abstract class Field implements JsonSerializable
         return $this;
     }
 
-    public function resolveData()
+    public function store($resourceData)
     {
         return $this->request->input($this->get('model'));
     }
@@ -94,15 +94,24 @@ abstract class Field implements JsonSerializable
         return $this;
     }
 
-    public function resolve()
+    public function resolve($resourceData)
     {
         if ($this->resolveOverride instanceof Closure) {
-            return ($this->resolveOverride)();
+            return ($this->resolveOverride)($resourceData);
         } else if ($this->resolveOverride) {
             return $this->resolveOverride;
         }
 
-        return $this->resolveData();
+        return $this->store($resourceData);
+    }
+
+    public function render($formData)
+    {
+        $value = data_get($formData, $this->get('model'));
+
+        $this->set('value', $value);
+
+        return $this;
     }
 
     public function jsonSerialize()

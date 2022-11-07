@@ -3,6 +3,7 @@
 namespace App\Forms\Dashboard\Account;
 
 use App\Fields\Email;
+use App\Fields\Image;
 use App\Fields\Text;
 use App\Forms\Form;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -36,7 +37,14 @@ class ProfileForm extends Form
 
             Email::for('email')
                 ->label(trans('account.email'))
-                ->rules(['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->resource->id)])
+                ->rules(['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->resource->id)]),
+
+            Image::for('avatar')
+                ->label(trans('account.avatar'))
+                ->width('80px')
+                ->height('80px')
+                ->crop()
+                ->storeAt('avatars'),
         ];
     }
 

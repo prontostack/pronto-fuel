@@ -11,7 +11,7 @@ class Checkbox extends Field
         return 'Checkbox';
     }
 
-    public function resolveData()
+    public function store($resourceData)
     {
         return $this->request->boolean($this->get('model'));
     }

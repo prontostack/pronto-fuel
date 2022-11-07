@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Fields{{ PartialNamespace }};
+
+use App\Fields\Field;
+
+class {{ FieldName }} extends Field
+{
+    public function component()
+    {
+        return '{{ FieldName }}';
+    }
+
+    // public function binds()
+    // {
+    //    return [];
+    // }
+
+    // public function resolveData()
+    // {
+    //    ...
+    // }
+}

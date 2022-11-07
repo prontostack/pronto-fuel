@@ -13,7 +13,7 @@ class Password extends Text
         ];
     }
 
-    public function resolveData()
+    public function store($resourceData)
     {
         $password = $this->request->input($this->get('model'));
 

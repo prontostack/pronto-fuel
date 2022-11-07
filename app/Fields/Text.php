@@ -16,7 +16,7 @@ class Text extends Field
         ];
     }
 
-    public function resolveData()
+    public function store($resourceData)
     {
         return $this->request->input($this->get('model'));
     }

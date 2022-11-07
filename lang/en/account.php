@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'avatar' => 'Avatar',
     'email' => 'E-mail',
     'my_account' => 'My Account',
     'name' => 'Name',

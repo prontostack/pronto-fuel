@@ -34,9 +34,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $user = $request->user()?->toArray();
+
+        if ($user) {
+            $user['avatar'] = $request->user()->avatar();
+        }
+
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => $user
             ],
             'toasts' => Toast::all()
         ]);

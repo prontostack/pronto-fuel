@@ -9,6 +9,7 @@
         "lint": "npx eslint ."
     },
     "devDependencies": {
+        "@iconify-json/fa6-regular": "^1.1.6",
         "@iconify-json/mdi": "^1.0.16",
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-vue3": "^0.6.0",
@@ -29,6 +30,7 @@
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "^6.0.0",
         "eslint-plugin-vue": "^9.3.0",
+        "file-dialog": "^0.0.8",
         "laravel-vite-plugin": "^0.6.0",
         "lodash": "^4.17.19",
         "momentum-modal": "^0.1.11",
@@ -47,5 +49,8 @@
         "vite": "^3.0.4",
         "vue": "^3.0.5",
         "vue3-otp-input": "^0.3.6"
+    },
+    "dependencies": {
+        "vue-advanced-cropper": "^2.8.3"
     }
 }

@@ -15,7 +15,7 @@ class Form implements JsonSerializable
     protected $request;
     protected $mode;
     protected $resource;
-    protected $formData;
+    protected $resourceData;
     protected $method;
     protected $action;
     protected $fields;
@@ -87,9 +87,9 @@ class Form implements JsonSerializable
     public function setFormData()
     {
         if ($this->resource instanceof Model) {
-            $this->formData = $this->resource->toArray();
+            $this->resourceData = $this->resource->toArray();
         } else if (is_array($this->resource)) {
-            $this->formData = $this->resource;
+            $this->resourceData = $this->resource;
         }
 
         return $this;
@@ -168,8 +168,7 @@ class Form implements JsonSerializable
 
         return $this->fields->map(function ($field) {
             if (!$value = $field->get('value', null)) {
-                $value = data_get($this->formData, $field->get('model'));
-                $field->set('value', $value);
+                $field->render($this->resourceData);
             }
 
             return $field;
@@ -199,16 +198,29 @@ class Form implements JsonSerializable
 
     protected function resolveFields()
     {
-        $this->result = [];
+        $resourceData = $this->resourceData;
 
-        foreach ($this->fields->all() as $key => $field) {
-            $column = $field->get('model');
-            $value = $field->resolve();
+        $this->result = $this->fields->reduce(function ($result, $field) use ($resourceData) {
+            data_set($result, $field->get('model'), $field->resolve($resourceData));
 
-            data_set($this->result, $column, $value);
-        }
+            return $result;
+        }, []);
 
         return $this;
+
+        // $this->result = [];
+
+        // foreach ($this->fields->all() as $key => $field) {
+        //     $column = $field->get('model');
+
+        //     $currentValue = data_get($this->resourceData, $column);
+
+        //     $newValue = $field->resolve($currentValue);
+
+        //     data_set($this->result, $column, $newValue);
+        // }
+
+        // return $this;
     }
 
     public function handleSave()
