@@ -105,9 +105,9 @@ abstract class Field implements JsonSerializable
         return $this->store($resourceData);
     }
 
-    public function render($formData)
+    public function render($resourceData)
     {
-        $value = data_get($formData, $this->get('model'));
+        $value = data_get($resourceData, $this->get('model'));
 
         $this->set('value', $value);
 

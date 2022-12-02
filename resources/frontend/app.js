@@ -9,6 +9,7 @@ import { Quasar } from 'quasar'
 import { modal } from 'momentum-modal'
 import quasarIconSet from 'quasar/icon-set/svg-mdi-v6'
 import axios from 'axios'
+import PortalVue from 'portal-vue'
 import Notifications from '@kyvg/vue3-notification'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -22,6 +23,7 @@ createInertiaApp({
     return createApp({ render: () => h(app, props) })
       .use(createPinia())
       .use(Notifications)
+      .use(PortalVue)
       .use(Quasar, {
         iconSet: quasarIconSet
       })

@@ -47,7 +47,7 @@ export default defineConfig({
     Components({
       dirs: [
         './resources/frontend/Components',
-        './resources/frontend/FormInputs',
+        './resources/frontend/Fields',
         './resources/frontend/Layouts',
         './resources/frontend/Transitions'
       ],

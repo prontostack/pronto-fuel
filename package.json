@@ -9,6 +9,17 @@
         "lint": "npx eslint ."
     },
     "devDependencies": {
+        "@editorjs/checklist": "^1.3.0",
+        "@editorjs/delimiter": "^1.2.0",
+        "@editorjs/editorjs": "^2.25.0",
+        "@editorjs/embed": "^2.5.3",
+        "@editorjs/footnotes": "^1.1.0",
+        "@editorjs/header": "^2.6.2",
+        "@editorjs/inline-code": "^1.3.1",
+        "@editorjs/marker": "^1.2.2",
+        "@editorjs/nested-list": "^1.0.2",
+        "@editorjs/table": "^2.1.0",
+        "@editorjs/underline": "^1.0.0",
         "@iconify-json/fa6-regular": "^1.1.6",
         "@iconify-json/mdi": "^1.0.16",
         "@inertiajs/inertia": "^0.11.0",
@@ -23,8 +34,13 @@
         "@vueuse/components": "^9.1.0",
         "@vueuse/core": "^9.1.0",
         "autoprefixer": "^10.2.4",
+        "await-to-js": "^3.0.0",
         "axios": "0.21.4",
         "dotenv": "^16.0.1",
+        "editorjs-change-case": "^0.0.3",
+        "editorjs-hyperlink": "^1.0.6",
+        "editorjs-text-alignment-blocktune": "^1.0.3",
+        "editorjs-undo": "^1.0.1",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-import": "^2.25.4",
         "eslint-plugin-node": "^11.1.0",
@@ -35,6 +51,7 @@
         "lodash": "^4.17.19",
         "momentum-modal": "^0.1.11",
         "pinia": "^2.0.18",
+        "portal-vue": "^3.0.0-beta.0",
         "postcss": "^8.2.13",
         "postcss-extend-rule": "^4.0.0",
         "postcss-import": "^15.0.0",
@@ -49,6 +66,9 @@
         "vite": "^3.0.4",
         "vue": "^3.0.5",
         "vue-advanced-cropper": "^2.8.3",
-        "vue3-otp-input": "^0.3.6"
+        "vue-contenteditable": "^4.1.0",
+        "vue-observe-visibility": "^2.0.0-alpha.1",
+        "vue3-otp-input": "^0.3.6",
+        "youtube-player": "^5.5.2"
     }
 }

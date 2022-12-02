@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\Account\PasswordController;
 use App\Http\Controllers\Dashboard\Account\AccountController;
 use App\Http\Controllers\Dashboard\Account\ProfileController;
 use App\Http\Controllers\Dashboard\OverviewController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,7 @@ Route::prefix('account')->name('account')->group(function () {
     Route::get('/', [AccountController::class, 'index'])
         ->name('');
 });
+
+Route::resources([
+    'posts' => PostController::class
+]);

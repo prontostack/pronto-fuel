@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lhr lpr lfr">
-    <q-header>
+    <q-header reveal>
       <q-toolbar class="tw-bg-primary-800">
         <q-btn
           dense
@@ -17,6 +17,7 @@
         <q-toolbar-title class="tw-flex tw-items-center">
           <span class="tw-font-extralight">{{ $page.props.title }}</span>
         </q-toolbar-title>
+        <PortalTarget name="contextual-actions" />
         <q-space class="tw-hidden sm:tw-flex" />
         <AccountMenu />
       </q-toolbar>
