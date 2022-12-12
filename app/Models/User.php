@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Parental\HasChildren;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasChildren;
 
     /**
      * The attributes that are mass assignable.
