@@ -76,56 +76,56 @@
                   method="post"
                   as="button"
                 >
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
-                    color="positive"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
+                    color="success"
                   >
                     Success
-                  </q-btn>
+                  </v-btn>
                 </Link>
                 <Link
                   href="/notify/info"
                   method="post"
                   as="button"
                 >
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
                     color="info"
                   >
                     Info
-                  </q-btn>
+                  </v-btn>
                 </Link>
                 <Link
                   href="/notify/warning"
                   method="post"
                   as="button"
                 >
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
                     color="warning"
                   >
                     Warning
-                  </q-btn>
+                  </v-btn>
                 </Link>
                 <Link
                   href="/notify/error"
                   method="post"
                   as="button"
                 >
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
-                    color="negative"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
+                    color="error"
                   >
                     Error
-                  </q-btn>
+                  </v-btn>
                 </Link>
               </div>
             </div>
@@ -149,34 +149,34 @@
               </div>
               <div>
                 <DialogLink href="/dialog/modal">
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
                     color="primary"
                   >
                     Modal
-                  </q-btn>
+                  </v-btn>
                 </DialogLink>
                 <DialogLink href="/dialog/slideover/left">
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
-                    color="primary"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
+                    color="accent"
                   >
                     SlideOver from the left
-                  </q-btn>
+                  </v-btn>
                 </DialogLink>
                 <DialogLink href="/dialog/slideover/right">
-                  <q-btn
-                    class="tw-mb-2 tw-mr-2"
-                    outline
-                    size="sm"
-                    color="primary"
+                  <v-btn
+                    class="tw-mr-2 tw-mb-2"
+                    variant="outlined"
+                    size="x-small"
+                    color="accent"
                   >
                     SlideOver from the right
-                  </q-btn>
+                  </v-btn>
                 </DialogLink>
               </div>
             </div>
@@ -347,7 +347,7 @@ defineProps({
 })
 </script>
 
-<style scoped>
+<!-- <style scoped>
 .bg-gray-100 {
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--tw-bg-opacity));
@@ -410,3 +410,4 @@ defineProps({
   }
 }
 </style>
+-->

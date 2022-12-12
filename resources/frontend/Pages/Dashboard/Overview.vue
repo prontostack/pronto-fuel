@@ -1,11 +1,15 @@
 <template layout="AppShell,Authenticated">
-  <div class="tw-p-6">
+  <v-container class="tw-my-4 md:tw-my-8">
     <Head :title="title" />
 
-    <h1 class="text-h4 tw-mb-6">
-      {{ title }}
-    </h1>
-  </div>
+    <v-row>
+      <v-col>
+        <h1 class="text-h4">
+          {{ title }}
+        </h1>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup>

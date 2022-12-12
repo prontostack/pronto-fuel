@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
-import { Quasar } from 'quasar'
 import { createPinia } from 'pinia'
-import quasarIconSet from 'quasar/icon-set/svg-mdi-v6'
+import vuetify from '@/plugins/vuetify'
 import VueObserveVisibility from 'vue-observe-visibility'
 import { useBlockTool } from '@/Fields/RichText/BlockTool/block-tool-store'
 
@@ -39,10 +38,8 @@ export default class BlockTool {
 
     // eslint-disable-next-line vue/one-component-per-file
     this.app = createApp(this.blockComponent)
-      .use(Quasar, {
-        iconSet: quasarIconSet
-      })
       .use(this.pinia)
+      .use(vuetify)
       .use(VueObserveVisibility)
 
     this.store = this.useStore()
@@ -74,9 +71,7 @@ export default class BlockTool {
       blockId: this.block.id,
       api: this.api
     })
-      .use(Quasar, {
-        iconSet: quasarIconSet
-      })
+      .use(vuetify)
       .use(this.pinia)
 
     this.settingsWrapper = document.createElement('div')

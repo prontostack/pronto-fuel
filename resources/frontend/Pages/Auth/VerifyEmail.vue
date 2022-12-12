@@ -13,24 +13,26 @@
       <Form v-bind="form">
         <template #submit="{ processing }">
           <div class="tw-mt-4 tw-flex tw-items-center tw-justify-between">
-            <Btn
+            <v-btn
               :disabled="processing"
               :loading="processing"
-              :label="form.trans.submit"
               type="submit"
               color="primary"
-            />
+            >
+              {{ form.trans.submit }}
+            </v-btn>
 
             <Link
               :href="form.logoutUrl"
               method="post"
               as="button"
             >
-              <Btn
-                :label="form.trans.logout"
+              <v-btn
                 type="button"
-                flat
-              />
+                variant="text"
+              >
+                {{ form.trans.logout }}
+              </v-btn>
             </Link>
           </div>
         </template>

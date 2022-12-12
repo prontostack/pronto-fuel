@@ -28,7 +28,7 @@ Route::post('/notify/{type}', function ($type) {
     return back()->toast('This notification comes from the server side =)', $type);
 });
 
-Route::get('/dialog/{type}/{position?}', function ($type, $position = null) {
+Route::get('/dialog/{type}/{position?}', function ($type, $location = null) {
     $page = [
         'modal' => 'WelcomeModal',
         'slideover' => 'WelcomeSlideOver'
@@ -37,7 +37,7 @@ Route::get('/dialog/{type}/{position?}', function ($type, $position = null) {
     return Inertia::modal($page, [
         'title' => 'One modal to rule them all!',
         'message' => 'That\'s right! I\'m a modal coming from the far, far away kingdom of the Server...',
-        'position' => $position
+        'location' => $location
     ])
         ->baseRoute('welcome');
 });

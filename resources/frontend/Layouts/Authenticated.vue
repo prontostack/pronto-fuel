@@ -1,74 +1,41 @@
 <template>
-  <q-layout view="lhr lpr lfr">
-    <q-header reveal>
-      <q-toolbar class="tw-bg-primary-800">
-        <q-btn
-          dense
-          flat
-          round
-          @click="
-            ($q.screen.xs)
-              ? isNavDrawerOpen = !isNavDrawerOpen
-              : layout.navigationDrawer.mini = !layout.navigationDrawer.mini
-          "
-        >
-          <i-mdi-menu class="tw-text-lg" />
-        </q-btn>
-        <q-toolbar-title class="tw-flex tw-items-center">
-          <span class="tw-font-extralight">{{ $page.props.title }}</span>
-        </q-toolbar-title>
-        <PortalTarget name="contextual-actions" />
-        <q-space class="tw-hidden sm:tw-flex" />
-        <AccountMenu />
-      </q-toolbar>
-    </q-header>
+  <v-app :theme="darkMode.enabled ? 'dark' : 'light'">
+    <NavDrawer />
 
-    <NavDrawer
-      v-model:is-open="isNavDrawerOpen"
-      v-model:mini="layout.navigationDrawer.mini"
+    <v-app-bar
+      color="app-bar"
+      density="compact"
+      inverted-scroll
     >
-      <NavList bookmarker>
-        <NavLink
-          :href="route('dashboard')"
-          :active="route().current('dashboard')"
-        >
-          <template #icon>
-            <i-mdi-home-outline />
-          </template>
-          Dashboard
-        </NavLink>
-        <NavLink
-          :href="route('account')"
-          :active="route().current('account')"
-        >
-          <template #icon>
-            <i-mdi-account-outline />
-          </template>
-          Account
-        </NavLink>
-      </NavList>
-    </NavDrawer>
+      <template #prepend>
+        <v-app-bar-nav-icon
+          @click="drawer.toggle"
+        />
+      </template>
 
-    <q-page-container>
+      <v-app-bar-title>
+        <span>{{ $page.props.title }}</span>
+      </v-app-bar-title>
+
+      <template #append>
+        <PortalTarget name="contextual-actions" />
+        <AccountMenu />
+      </template>
+    </v-app-bar>
+
+    <v-main>
       <FadeTransition>
         <slot />
       </FadeTransition>
-    </q-page-container>
-  </q-layout>
+    </v-main>
+  </v-app>
 </template>
 
 <script setup>
-import { useLocalStorage } from '@vueuse/core'
+import { useDarkMode } from '@/store/dark-mode'
+import { useNavDrawer } from '@/store/nav-drawer'
 
-const $q = useQuasar()
+const darkMode = useDarkMode()
 
-const page = usePage()
-
-const isNavDrawerOpen = ref($q.screen.gt.xs)
-
-const layout = useLocalStorage(`authenticated-layout-${page.props.value.auth.user.id}`, {
-  navigationDrawer: {
-    mini: true
-  }
-})
+const drawer = useNavDrawer()
 </script>

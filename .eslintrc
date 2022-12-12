@@ -75,8 +75,8 @@
         // Pinia
         "defineStore": true,
         "storeToRefs": true,
-        // Quasar,
-        "useQuasar": true
+        // Vuetify,
+        "useDisplay": true
     },
     "ignorePatterns": [
         "node_modules/**/*",

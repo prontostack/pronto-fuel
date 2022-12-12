@@ -2,68 +2,9 @@
   <div>
     <div
       v-if="!loaded"
-      class="q-pa-md tw-flex tw-justify-center"
+      class="tw-flex tw-justify-center"
     >
-      <q-card
-        flat
-        bordered
-        style="width: 100%; max-width: 550px"
-      >
-        <q-item>
-          <q-item-section avatar>
-            <q-skeleton type="QAvatar" />
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label>
-              <q-skeleton type="text" />
-            </q-item-label>
-            <q-item-label caption>
-              <q-skeleton
-                type="text"
-                width="80%"
-              />
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-
-        <q-item>
-          <q-item-section avatar />
-
-          <q-item-section class="q-pl-sm">
-            <q-skeleton
-              height="150px"
-              class="q-mb-sm"
-            />
-
-            <div class="row items-center justify-between no-wrap">
-              <div class="row items-center">
-                <i-mdi-comment-outline class="tw-text-black/20 tw-mr-2" />
-                <q-skeleton
-                  type="text"
-                  width="30px"
-                />
-              </div>
-
-              <div class="row items-center">
-                <i-mdi-repeat class="tw-text-black/20 tw-mr-2" />
-                <q-skeleton
-                  type="text"
-                  width="30px"
-                />
-              </div>
-
-              <div class="row items-center">
-                <i-mdi-heart-outline class="tw-text-black/20 tw-mr-2" />
-                <q-skeleton
-                  type="text"
-                  width="30px"
-                />
-              </div>
-            </div>
-          </q-item-section>
-        </q-item>
-      </q-card>
+      <RichTextLoader />
     </div>
     <div>
       <div v-if="!refreshing && !invalid">
@@ -94,6 +35,10 @@ const invalid = ref(false)
 const tweetId = computed(() => service.value.regex.exec(data.value.source)[2])
 
 const renderTweet = () => {
+  if (!window.twttr?.widgets) {
+    return
+  }
+
   window.twttr.widgets.createTweet(
     tweetId.value,
     tweet.value,

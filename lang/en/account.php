@@ -5,11 +5,6 @@ return [
     'email' => 'E-mail',
     'my_account' => 'My Account',
     'name' => 'Name',
-    'profile' => [
-        'label' => 'Profile Information',
-        'hint' => 'Update your account\'s profile information and email address.',
-        'updated' => 'Profile information updated',
-    ],
     'password' => [
         'forgot' => 'Forgot your password?',
         'label' => 'Password',
@@ -20,6 +15,22 @@ return [
         'new' => 'New Password',
         'confirm' => 'Confirm Password',
         'confirm_hint' => 'This is a secure area of the application. Please confirm your password before continuing.'
+    ],
+    'profile' => [
+        'label' => 'My Profile',
+        'hint' => 'Update your account\'s profile information and email address.',
+        'updated' => 'Profile information updated',
+    ],
+    'preferences' => [
+        'label' => 'Preferences',
+        'dark_mode' => [
+            'title' => 'Dark Mode',
+            'hint' => 'The Dark Mode is usually easier on your eyes and may save some battery on your device.',
+            'label' => 'Use Dark Mode'
+        ]
+    ],
+    'security' => [
+        'label' => 'Security'
     ],
     '2fa' => [
         'configure' => 'Configure Two Factor Authentication',

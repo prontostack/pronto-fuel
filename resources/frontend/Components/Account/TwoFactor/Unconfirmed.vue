@@ -14,13 +14,17 @@
           v-html="qrCode"
         />
       </div>
-      <Btn
+      <v-btn
         type="submit"
         color="primary"
-        :label="trans.enable"
         @click="askForChallenge = true"
-      />
-      <Dialog v-model="askForChallenge">
+      >
+        {{ trans.enable }}
+      </v-btn>
+      <v-dialog
+        v-model="askForChallenge"
+        max-width="400"
+      >
         <FormCard
           :title="confirm.trans.title"
           :hint="confirm.trans.hint"
@@ -30,7 +34,7 @@
             id="confirmTwoFactorAuthentication"
           />
         </FormCard>
-      </Dialog>
+      </v-dialog>
     </div>
   </div>
 </template>

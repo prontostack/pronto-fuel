@@ -1,7 +1,3 @@
 <template>
-  <q-checkbox />
+  <v-checkbox />
 </template>
-
-<script setup>
-
-</script>

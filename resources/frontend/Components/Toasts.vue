@@ -1,24 +1,39 @@
 <template>
   <notifications
-    class="tw-min-w-[300px] tw-p-0 tw-bg-none tw-border-none tw-m-6"
-    position="bottom right"
+    class="tw-min-w-[300px] tw-p-0 tw-bg-none tw-border-none tw-mb-3 sm:tw-m-6"
+    :position="xs ? 'bottom center' : 'bottom right'"
   >
     <template
       #body="{ item, close }"
     >
-      <Alert
-        class="tw-m-2"
+      <v-alert
         :type="item.type"
-        @dismiss="close"
+        class="tw-m-2"
+        @update:model-value="(val) => {
+          if (val) return
+          close()
+        }"
       >
-        {{ item.text }}
-      </Alert>
+        <div class="tw-flex">
+          <div>{{ item.text }}</div>
+          <v-btn
+            icon
+            variant="text"
+            size="x-small"
+            @click="close"
+          >
+            <i-mdi-close />
+          </v-btn>
+        </div>
+      </v-alert>
     </template>
   </notifications>
 </template>
 
 <script setup>
 import { notify } from '@kyvg/vue3-notification'
+
+const { xs } = useDisplay()
 
 const $page = usePage()
 

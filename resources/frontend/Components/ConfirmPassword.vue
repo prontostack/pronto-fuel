@@ -1,7 +1,10 @@
 <template>
   <div>
     <slot :confirm="getPasswordConfirmStatus" />
-    <Dialog v-model="askForPassword">
+    <v-dialog
+      v-model="askForPassword"
+      max-width="400"
+    >
       <FormCard
         :title="confirmPasswordForm.trans?.title"
         :hint="confirmPasswordForm.trans?.hint"
@@ -11,7 +14,7 @@
           @success="handleConfirmed"
         />
       </FormCard>
-    </Dialog>
+    </v-dialog>
   </div>
 </template>
 

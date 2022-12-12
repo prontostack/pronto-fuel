@@ -5,41 +5,52 @@
     v-slot="confirmation"
     @confirmed="submit"
   >
-    <form
-      v-bind="$attrs"
-      :action="action"
-      :method="method"
-      class="tw-space-y-4"
-      @submit.prevent="handlePasswordConfirmation(confirmation?.confirm)"
-    >
-      <template v-if="fields">
-        <div
-          v-for="field in fields"
-          :key="`field-${field.model}`"
+    <FadeTransition>
+      <Suspense>
+        <form
+          v-bind="$attrs"
+          :action="action"
+          :method="method"
+          @submit.prevent="handlePasswordConfirmation(confirmation?.confirm)"
         >
-          <component
-            :is="field.component"
-            v-model="form[field.model]"
-            v-bind="field.binds"
-            :error="errors[field.model]"
-            @submit-form="handlePasswordConfirmation(confirmation?.confirm)"
+          <template v-if="fields">
+            <div
+              v-for="field in fields"
+              :key="`field-${field.model}`"
+            >
+              <component
+                :is="field.component"
+                v-model="form[field.model]"
+                v-bind="field.binds"
+                :error="errors[field.model]"
+                @submit-form="handlePasswordConfirmation(confirmation?.confirm)"
+              />
+            </div>
+          </template>
+          <slot
+            name="submit"
+            v-bind="form"
+          >
+            <v-btn
+              v-if="!hideSubmit"
+              :disabled="form.processing"
+              :loading="form.processing"
+              color="primary"
+              type="submit"
+            >
+              {{ trans.submit }}
+            </v-btn>
+          </slot>
+        </form>
+        <template #fallback>
+          <v-progress-linear
+            indeterminate
+            height="3"
+            color="primary-lighten-1"
           />
-        </div>
-      </template>
-      <slot
-        name="submit"
-        v-bind="form"
-      >
-        <Btn
-          v-if="!hideSubmit"
-          :disabled="form.processing"
-          :loading="form.processing"
-          color="primary"
-          type="submit"
-          :label="trans.submit"
-        />
-      </slot>
-    </form>
+        </template>
+      </Suspense>
+    </FadeTransition>
   </component>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-inline-block">
+  <div class="tw-inline-block tw-mb-6">
     <FileHandler
       v-slot="{ dragging }"
       @selected="selected"
@@ -11,6 +11,7 @@
         tw-justify-center
         tw-items-center
         tw-border
+        tw-border-solid
         tw-rounded
         tw-p-2
         tw-border-black/20
@@ -34,6 +35,7 @@
         <div v-else>
           <i-fa6-regular-image
             class="
+            tw-block
             tw-text-2xl
             tw-text-black/20
             group-hover:tw-text-black/50
@@ -45,50 +47,52 @@
           />
         </div>
       </div>
-      <Dialog
+      <v-dialog
         v-if="cropperSettings"
         v-model="cropping"
+        max-width="600"
       >
-        <q-card>
-          <q-card-section>
-            <div class="tw-rounded tw-overflow-hidden">
-              <Cropper
-                ref="cropper"
-                class="cropper"
-                :src="uploadedImage"
-                :stencil-props="cropperSettings.stencilProps"
-              />
-            </div>
-          </q-card-section>
-          <q-card-actions>
-            <Btn
-              label="Save"
-              color="primary"
-              @click.stop="crop"
+        <v-sheet color="primary-darken-4">
+          <div class="tw-overflow-hidden">
+            <Cropper
+              ref="cropper"
+              class="cropper"
+              :src="uploadedImage"
+              :stencil-props="cropperSettings.stencilProps"
             />
-          </q-card-actions>
-        </q-card>
-      </Dialog>
+          </div>
+          <div class="tw-flex tw-justify-center tw-py-2">
+            <v-btn
+              :prepend-icon="mdiCrop"
+              variant="outlined"
+              color="accent-lighten-1"
+              @click.stop="crop"
+            >
+              Crop
+            </v-btn>
+          </div>
+        </v-sheet>
+      </v-dialog>
     </FileHandler>
     <div
       v-if="currentPreview"
       class="tw-flex tw-justify-end"
     >
-      <Btn
-        size="xs"
-        @click="() => {
-          emit('update:modelValue', 'remove')
-        }"
+      <v-btn
+        variant="plain"
+        :prepend-icon="mdiDelete"
+        size="x-small"
+        @click="emit('update:modelValue', 'remove')"
       >
-        <i-mdi-delete class="tw-mr-1 tw-text-[8px]" />
         Remove
-      </Btn>
+      </v-btn>
     </div>
   </div>
 </template>
 
 <script setup>
 import { Cropper } from 'vue-advanced-cropper'
+import { mdiCrop, mdiDelete } from '@mdi/js'
 
 const props = defineProps({
   width: {

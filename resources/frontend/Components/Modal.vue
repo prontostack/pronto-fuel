@@ -1,10 +1,13 @@
 <template>
-  <q-dialog
+  <v-dialog
     :model-value="show"
-    @hide="redirect"
+    @update:model-value="(val) => {
+      if (val) return
+      redirect()
+    }"
   >
     <slot />
-  </q-dialog>
+  </v-dialog>
 </template>
 <script setup>
 import { useModal } from 'momentum-modal'

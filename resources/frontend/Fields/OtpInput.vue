@@ -27,7 +27,7 @@
     }"
   >
     <span
-      class="tw-text-danger-500"
+      class="tw-text-danger-500 tw-text-sm"
       v-text="error"
     />
   </div>
@@ -99,13 +99,13 @@ export default {
     }
 
     &:focus {
-      border: 1px solid var(--q-primary);
-      outline: 1px solid var(--q-primary);
+      border: 1px solid rgb(var(--v-theme-primary));
+      outline: 1px solid rgb(var(--v-theme-primary));
     }
 
     &--error {
-      border: 1px solid var(--q-negative);
-      outline: 1px solid var(--q-negative);
+      border: 1px solid rgb(var(--v-theme-error));
+      outline: 1px solid rgb(var(--v-theme-error));
     }
   }
 </style>

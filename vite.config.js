@@ -5,9 +5,8 @@ import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { defineConfig } from 'vite'
-import { QuasarResolver } from 'unplugin-vue-components/resolvers'
-import { quasar, transformAssetUrls } from '@quasar/vite-plugin'
 import { resolve } from 'path'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineConfig({
   plugins: [
@@ -20,16 +19,16 @@ export default defineConfig({
       template: { transformAssetUrls }
     }),
 
-    quasar({
-      autoImportComponentCase: 'combined',
-      sassVariables: '@/assets/quasar.variables.scss'
+    vuetify({
+      styles: {
+        configFile: 'resources/frontend/assets/vuetify.variables.scss'
+      }
     }),
 
     AutoImport({
       imports: [
         'vue',
         'pinia',
-        'quasar',
         {
           '@inertiajs/inertia': [
             'Inertia'
@@ -39,6 +38,11 @@ export default defineConfig({
           '@inertiajs/inertia-vue3': [
             'usePage',
             'useForm'
+          ]
+        },
+        {
+          vuetify: [
+            'useDisplay'
           ]
         }
       ]
@@ -57,7 +61,6 @@ export default defineConfig({
       directoryAsNamespace: true,
       deep: true,
       resolvers: [
-        QuasarResolver(),
         IconsResolver(),
         (name) => {
           if (name === 'Head') {

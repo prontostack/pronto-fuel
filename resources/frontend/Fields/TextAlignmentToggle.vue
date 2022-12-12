@@ -1,32 +1,31 @@
 <template>
-  <q-btn-toggle
-    toggle-color="primary"
-    unelevated
-    size="sm"
-    :options="[
-      { value: 'left', slot: 'left' },
-      { value: 'center', slot: 'center' },
-      { value: 'right', slot: 'right' }
-    ]"
+  <v-btn-toggle
+    mandatory
+    divided
+    variant="outlined"
+    density="compact"
   >
-    <template #left>
-      <div class="row items-center no-wrap">
-        <i-mdi-format-align-left />
-      </div>
-    </template>
+    <v-btn
+      size="small"
+      value="left"
+    >
+      <i-mdi-format-align-left />
+    </v-btn>
 
-    <template #center>
-      <div class="row items-center no-wrap">
-        <i-mdi-format-align-center />
-      </div>
-    </template>
+    <v-btn
+      size="small"
+      value="center"
+    >
+      <i-mdi-format-align-center />
+    </v-btn>
 
-    <template #right>
-      <div class="row items-center no-wrap">
-        <i-mdi-format-align-right />
-      </div>
-    </template>
-  </q-btn-toggle>
+    <v-btn
+      size="small"
+      value="right"
+    >
+      <i-mdi-format-align-right />
+    </v-btn>
+  </v-btn-toggle>
 </template>
 
 <script setup>

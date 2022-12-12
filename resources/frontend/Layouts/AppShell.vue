@@ -1,31 +1,41 @@
 <template>
   <div>
+    <Head :title="$page.props.title" />
     <FadeTransition>
       <slot />
     </FadeTransition>
     <Modal />
     <Toasts />
-    <q-ajax-bar
-      ref="loadingIndicator"
-      position="top"
-      color="accent"
-      size="4px"
-      skip-hijack
-    />
+    <div
+      v-if="loading"
+      class="tw-fixed tw-top-0 tw-left-0 tw-right-0 tw-z-[10000]"
+    >
+      <v-progress-linear
+        indeterminate
+        height="3"
+        color="primary-lighten-1"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { Inertia } from '@inertiajs/inertia'
 import { Modal } from 'momentum-modal'
-import { useAppShell } from '@/store/app-shell'
+import { useDarkMode } from '@/store/dark-mode'
 
-const { setDarkMode } = useAppShell()
+const { setDarkMode } = useDarkMode()
 
 setDarkMode()
 
-const loadingIndicator = ref(null)
+const loading = ref(false)
 
-Inertia.on('start', () => loadingIndicator.value.start())
-Inertia.on('finish', () => loadingIndicator.value.stop())
+Inertia.on('start', () => { loading.value = true })
+Inertia.on('finish', () => { loading.value = false })
 </script>
+
+<style lang="scss">
+.v-messages__message {
+  margin-bottom: 12px;
+}
+</style>

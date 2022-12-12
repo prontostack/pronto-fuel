@@ -1,6 +1,5 @@
 <template>
-  <q-linear-progress
-    dark
+  <v-progress-linear
     rounded
     indeterminate
     color="primary"

@@ -14,15 +14,14 @@
             {{ form.trans.forgotPassword }}
           </Link>
 
-          <q-btn
+          <v-btn
             :loading="processing"
             :disabled="processing"
             type="submit"
             color="primary"
-            class="ml-4"
           >
             {{ form.trans.login }}
-          </q-btn>
+          </v-btn>
         </div>
       </template>
     </Form>

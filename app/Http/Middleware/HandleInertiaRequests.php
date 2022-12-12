@@ -44,7 +44,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $user
             ],
-            'toasts' => Toast::all()
+            'toasts' => Toast::all(),
+            'current_route' => $request->route()->getName()
         ]);
     }
 }

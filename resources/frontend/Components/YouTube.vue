@@ -20,22 +20,7 @@
       v-if="!loaded"
       class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0"
     >
-      <q-card
-        flat
-        class="tw-w-full tw-h-full"
-        :class="{
-          'tw-max-w-[360px]': orientation === 'portrait'
-        }"
-      >
-        <q-skeleton
-          height="100%"
-          square
-        >
-          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full tw-absolute tw-inset-0">
-            <i-mdi-youtube class="tw-text-6xl tw-opacity-20" />
-          </div>
-        </q-skeleton>
-      </q-card>
+      <RichTextLoader />
     </div>
   </div>
   <!--
@@ -114,9 +99,7 @@ const renderVideo = () => {
 }
 
 onMounted(() => {
-  // nextTick(() => {
   renderVideo()
-  // })
 })
 
 watch(props.playerSettings, () => {

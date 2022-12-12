@@ -11,13 +11,14 @@
             {{ form.trans.alreadyRegistered }}
           </Link>
 
-          <Btn
+          <v-btn
             :disabled="processing"
             :loading="processing"
-            :label="form.trans.submit"
             type="submit"
             color="primary"
-          />
+          >
+            {{ form.trans.submit }}
+          </v-btn>
         </div>
       </template>
     </Form>

@@ -1,24 +1,24 @@
-@import "tailwindcss/base";
+/* @import "tailwindcss/base"; */
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@layer base {
-    a {
-        @apply tw-text-primary-500 dark:tw-text-primary-400;
-    }
+/*
+a {
+    @apply tw-text-primary-500 tw-no-underline;
+}
 
-    a:hover,
-    a:hover {
-        @apply tw-text-primary-700 dark:tw-text-primary-300;
-    }
+a:hover,
+a:focus {
+    @apply tw-text-primary-600 dark:tw-text-primary-400;
+}
 
-    a:focus {
-        @apply tw-outline-1;
-    }
+a:focus {
+    @apply tw-outline-1;
+}
 
-    .tw-dark {
-        input {
-            color-scheme: dark;
-        }
+.tw-dark {
+    input {
+        color-scheme: dark;
     }
 }
+*/

@@ -1,8 +1,6 @@
 <template>
-  <q-input
-    outlined
-    :error="error && (typeof error !== undefined)"
-    :error-message="error"
+  <v-text-field
+    :error-messages="error"
   />
 </template>
 

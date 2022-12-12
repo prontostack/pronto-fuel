@@ -14,16 +14,20 @@
       v-slot="{ confirm: confirmEnable }"
       v-bind="enable.binds"
     >
-      <Btn
+      <v-btn
         color="primary"
-        :label="trans.configure"
+        :stacked="xs"
         @click="confirmEnable"
-      />
+      >
+        {{ trans.configure }}
+      </v-btn>
     </ConfirmPassword>
   </div>
 </template>
 
 <script setup>
+const { xs } = useDisplay()
+
 defineProps({
   enable: Object,
   trans: Object

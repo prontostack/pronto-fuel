@@ -19,13 +19,14 @@
         v-bind="challengeForm"
       />
       <div class="text-center tw-mt-6">
-        <Btn
+        <v-btn
           color="primary"
-          flat
-          size="sm"
-          :label="trans.switchMethod"
+          variant="text"
+          size="small"
           @click.stop="useRecoveryCode = !useRecoveryCode"
-        />
+        >
+          {{ trans.switchMethod }}
+        </v-btn>
       </div>
     </FormCard>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <q-slider />
+  <v-slider />
 </template>
 
 <script setup>

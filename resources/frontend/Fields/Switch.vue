@@ -1,5 +1,5 @@
 <template>
-  <q-toggle size="sm" />
+  <v-switch />
 </template>
 
 <script setup>

@@ -1,87 +1,54 @@
 <template>
-  <q-btn
-    flat
-    stretch
-  >
-    <div class="row items-center no-wrap">
-      <q-avatar size="32px">
-        <img :src="user.avatar">
-      </q-avatar>
-    </div>
-
-    <q-menu
-      v-model="isOpen"
-      transition-show="jump-down"
-      transition-hide="jump-up"
-      anchor="bottom right"
-      self="top right"
-      max-width="260px"
+  <div class="tw-relative">
+    <v-menu
+      transition="slide-y-transition"
     >
-      <div class="tw-flex tw-items-center tw-p-4">
-        <q-avatar
-          size="32px"
-          class="tw-mr-4"
+      <template #activator="{ props }">
+        <v-btn
+          icon
+          variant="text"
         >
-          <img :src="user.avatar">
-        </q-avatar>
-        <div class="tw-opacity-60">
-          <span class="tw-block tw-font-semibold">{{ user.name }}</span>
-          <span class="tw-block tw-text-xs">{{ user.email }}</span>
-        </div>
-      </div>
-      <q-separator />
-      <NavList class="tw-w-full">
+          <v-avatar v-bind="props">
+            <v-img :src="user.avatar" />
+          </v-avatar>
+        </v-btn>
+      </template>
+
+      <v-list
+        nav
+        density="compact"
+      >
         <NavLink
-          :href="route('account')"
-          :active="route().current('account')"
-        >
-          <template #icon>
-            <i-mdi-account-outline />
-          </template>
-          My Account
-        </NavLink>
-        <q-separator spaced />
-        <q-toggle
-          v-model="dark"
-          color="deep-purple-4"
-        >
-          <span class="tw-opacity-60">Dark Mode</span>
-        </q-toggle>
-        <q-separator spaced />
+          title="My Profile"
+          :icon="mdiAccountOutline"
+          to="account.profile"
+        />
         <NavLink
-          :href="route('logout')"
+          title="Preferences"
+          :icon="mdiCogOutline"
+          to="account.preferences"
+        />
+        <NavLink
+          title="Security"
+          :icon="mdiLockOutline"
+          to="account.security"
+        />
+
+        <v-divider class="tw-mb-[3px]" />
+
+        <NavLink
+          title="Logout"
+          :icon="mdiPowerStandby"
+          to="logout"
           method="post"
-          as="button"
-        >
-          <template #icon>
-            <i-mdi-power-standby />
-          </template>
-          Logout
-        </NavLink>
-      </NavList>
-    </q-menu>
-  </q-btn>
+        />
+      </v-list>
+    </v-menu>
+  </div>
 </template>
 
 <script setup>
-import { useAppShell } from '@/store/app-shell'
-
-const { settings, toggleDarkMode } = useAppShell()
-
-const dark = computed({
-  get () {
-    return settings.isDark
-  },
-  set () {
-    toggleDarkMode()
-  }
-})
-
-const isOpen = ref(false)
+import { mdiAccountOutline, mdiPowerStandby, mdiCogOutline, mdiLockOutline } from '@mdi/js'
 
 const user = usePage().props.value.auth.user
-
-Inertia.on('navigate', () => {
-  isOpen.value = false
-})
 </script>

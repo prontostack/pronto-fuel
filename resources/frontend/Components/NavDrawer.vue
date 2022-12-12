@@ -1,105 +1,56 @@
 <template>
-  <q-drawer
-    show-if-above
-    side="left"
-    :model-value="isOpen"
-    :width="width"
-    :mini="isMini"
-    :mini-width="miniWidth"
-    :breakpoint="breakpoint"
-    class="
-      tw-bg-primary-50
-      dark:tw-bg-slate-800
-    "
-    @update:model-value="emit('update:isOpen')"
+  <v-navigation-drawer
+    v-model="drawer.isOpen"
+    :rail="drawer.isRail"
+    expand-on-hover
+    width="240"
+    color="nav-drawer-toolbar"
+    theme="dark"
   >
-    <q-scroll-area class="fit">
-      <div class="drawer__content">
-        <q-toolbar class="drawer__toolbar tw-bg-primary-500 text-white">
-          <div class="drawer__logo tw-flex tw-justify-center tw-items-center">
-            <ApplicationLogo class="tw-w-9 tw-fill-white" />
-          </div>
-          <q-toolbar-title class="tw-flex tw-items-center">
-            <span class="tw-font-extralight">Pronto Fuel</span>
-          </q-toolbar-title>
-        </q-toolbar>
-        <slot />
-      </div>
-    </q-scroll-area>
-  </q-drawer>
+    <v-toolbar
+      color="nav-drawer-toolbar"
+      density="compact"
+    >
+      <v-toolbar-title>
+        <div class="tw-flex tw-items-center">
+          <ApplicationLogo class="tw-w-6 tw-mr-4 tw-fill-white" />
+
+          <span class="tw-font-extralight">
+            Pronto Fuel
+          </span>
+        </div>
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-list
+      nav
+      density="compact"
+    >
+      <NavLink
+        title="Dashboard"
+        :icon="mdiHomeOutline"
+        to="dashboard"
+      />
+      <NavLink
+        title="Account"
+        :icon="mdiAccountOutline"
+        to="account"
+      />
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script setup>
-const $q = useQuasar()
+import { useNavDrawer } from '@/store/nav-drawer'
+import { mdiHomeOutline, mdiAccountOutline } from '@mdi/js'
 
-const props = defineProps({
-  width: {
-    type: Number,
-    default: 240
-  },
-  miniWidth: {
-    type: Number,
-    default: 60
-  },
-  isOpen: Boolean,
-  mini: Boolean
-})
+const drawer = useNavDrawer()
+const { mobile } = useDisplay()
 
-const emit = defineEmits([
-  'update:isOpen',
-  'update:mini'
-])
-
-const pixelWidth = computed(() => props.width + 'px')
-const pixelMiniWidth = computed(() => props.miniWidth + 'px')
-
-const isMini = computed({
-  get () { return props.mini },
-  set () { emit('update:mini') }
-})
-
-provide('mini', isMini)
-provide('width', props.width)
-provide('miniWidth', props.miniWidth)
-
-Inertia.on('navigate', () => {
-  if (props.isOpen && $q.screen.xs) {
-    emit('update:isOpen', false)
-  }
-})
-
-const breakpoint = $q.screen.sizes.sm - 1
-let previousWidth = window.innerWidth
-
-window.addEventListener('resize', () => {
-  if ((previousWidth < breakpoint) && (breakpoint < window.innerWidth)) {
-    if (props.isOpen) {
-      emit('update:isOpen', false)
-    }
-
-    setTimeout(() => emit('update:isOpen', true), 1000)
-  }
-
-  previousWidth = window.innerWidth
-})
-</script>
-
-<style lang="scss">
-.drawer {
-  &__toolbar {
-    padding: 0;
-
-    .q-toolbar__title {
-      padding: 0;
-    }
-  }
-
-  &__content {
-    width: v-bind(pixelWidth);
-  }
-
-  &__logo {
-    width: v-bind(pixelMiniWidth);
+const hide = () => {
+  if (mobile.value && drawer.isOpen) {
+    drawer.toggle()
   }
 }
-</style>
+
+Inertia.on('navigate', hide)
+</script>

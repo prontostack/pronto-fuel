@@ -1,19 +1,20 @@
 <template>
-  <q-card>
-    <q-card-section>
-      <header
-        v-if="title"
-        class="tw-text-xl tw-mb-3"
-        v-text="title"
-      />
+  <v-sheet class="tw-p-6">
+    <header
+      v-if="title"
+      class="tw-mb-4"
+    >
+      {{ title }}
+    </header>
+    <div>
       <div
         v-if="hint"
-        class="tw-mb-4 tw-text-sm tw-opacity-60"
+        class="tw-mb-6 tw-text-sm tw-opacity-60"
         v-text="hint"
       />
       <slot />
-    </q-card-section>
-  </q-card>
+    </div>
+  </v-sheet>
 </template>
 
 <script setup>

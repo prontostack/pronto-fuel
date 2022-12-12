@@ -6,17 +6,27 @@
       v-bind="postForm"
     />
     <Portal to="contextual-actions">
-      <Btn
-        label="Save"
-        color="primary"
+      <v-btn
+        icon
         form="post-form"
         type="submit"
-      />
+        class="tw-mx-4"
+      >
+        <v-icon :icon="mdiContentSaveOutline" />
+        <v-tooltip
+          activator="parent"
+          location="bottom"
+        >
+          Save
+        </v-tooltip>
+      </v-btn>
     </Portal>
   </div>
 </template>
 
 <script setup>
+import { mdiContentSaveOutline } from '@mdi/js'
+
 defineProps({
   title: String,
   postForm: Object

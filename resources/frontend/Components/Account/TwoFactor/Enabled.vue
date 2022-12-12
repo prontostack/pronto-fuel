@@ -33,11 +33,12 @@
           v-slot="{ confirm: confirmRegenerateRecoveryCodes }"
           v-bind="regenerateRecoveryCodes.binds"
         >
-          <Btn
-            outlined
-            :label="trans.recoveryCodes.regenerate"
+          <v-btn
+            variant="outlined"
             @click="confirmRegenerateRecoveryCodes"
-          />
+          >
+            {{ trans.recoveryCodes.regenerate }}
+          </v-btn>
         </ConfirmPassword>
       </div>
       <div v-else>
@@ -46,11 +47,12 @@
           v-bind="showRecoveryCodes.binds"
           @confirmed="Inertia.reload()"
         >
-          <Btn
+          <v-btn
             color="primary"
-            :label="trans.recoveryCodes.show"
             @click="confirmShowRecoveryCodes"
-          />
+          >
+            {{ trans.recoveryCodes.show }}
+          </v-btn>
         </ConfirmPassword>
       </div>
     </div>
@@ -59,12 +61,13 @@
       v-slot="{ confirm: confirmDisable }"
       v-bind="disable.binds"
     >
-      <Btn
-        outlined
-        color="negative"
-        :label="trans.disable"
+      <v-btn
+        variant="outlined"
+        color="error"
         @click="confirmDisable"
-      />
+      >
+        {{ trans.disable }}
+      </v-btn>
     </ConfirmPassword>
   </div>
 </template>

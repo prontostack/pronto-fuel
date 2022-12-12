@@ -1,15 +1,13 @@
 <template>
-  <Modal>
-    <q-card class=" tw-text-white">
-      <q-toolbar class="tw-bg-primary-600">
-        <q-toolbar-title>
-          {{ title }}
-        </q-toolbar-title>
-      </q-toolbar>
-      <q-card-section class="tw-bg-primary-500">
-        <span class="tw-text-lg">{{ message }}</span>
-      </q-card-section>
-    </q-card>
+  <Modal max-width="600">
+    <v-card color="primary">
+      <v-card-title>
+        {{ title }}
+      </v-card-title>
+      <v-card-text>
+        <span>{{ message }}</span>
+      </v-card-text>
+    </v-card>
   </Modal>
 </template>
 

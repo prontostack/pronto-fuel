@@ -26,8 +26,7 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.6",
         "@kyvg/vue3-notification": "^2.3.4",
-        "@quasar/extras": "^1.12.5",
-        "@quasar/vite-plugin": "^1.0.5",
+        "@mdi/js": "^7.0.96",
         "@tailwindcss/forms": "^0.5.2",
         "@vitejs/plugin-vue": "^3.0.1",
         "@vue/compiler-sfc": "^3.0.5",
@@ -56,7 +55,6 @@
         "postcss-extend-rule": "^4.0.0",
         "postcss-import": "^15.0.0",
         "postcss-nesting": "^10.1.2",
-        "quasar": "^2.7.5",
         "sass": "^1.32.12",
         "tailwindcss": "^3.0.18",
         "unplugin-auto-import": "^0.11.1",
@@ -64,11 +62,13 @@
         "unplugin-vue-components": "^0.22.4",
         "uuid": "^9.0.0",
         "vite": "^3.0.4",
+        "vite-plugin-vuetify": "^1.0.0",
         "vue": "^3.0.5",
         "vue-advanced-cropper": "^2.8.3",
         "vue-contenteditable": "^4.1.0",
         "vue-observe-visibility": "^2.0.0-alpha.1",
         "vue3-otp-input": "^0.3.6",
+        "vuetify": "^3.0.3",
         "youtube-player": "^5.5.2"
     }
 }
