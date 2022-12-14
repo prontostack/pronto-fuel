@@ -8,8 +8,16 @@ use JsonSerializable;
 
 class Component extends IlluminateComponent implements JsonSerializable
 {
+    protected $binds = [];
+
     public function render()
     {
+    }
+
+    public function __call($method, $arg)
+    {
+        data_set($this->binds, $method, ...$arg);
+        return $this;
     }
 
     public function toArray()
@@ -18,7 +26,10 @@ class Component extends IlluminateComponent implements JsonSerializable
             'component' => method_exists($this, 'component')
                 ? $this->{'component'}()
                 : null,
-            'binds' => Arr::except($this->extractPublicProperties(), ['attributes', 'componentName'])
+            'binds' => array_replace_recursive(
+                Arr::except($this->extractPublicProperties(), ['attributes', 'componentName']),
+                $this->binds
+            )
         ];
     }
 

@@ -43,12 +43,50 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
+            /**
+             * Admin Routes
+             *
+             * Routes used only by authenticated company collaborators.
+             */
+            Route::middleware(['web', 'auth:admin', 'verified'])
+                ->namespace($this->namespace)
+                ->domain(config('admin.host'))
+                ->name('admin.')
+                ->group(base_path('routes/admin.php'));
+
+            /**
+             * Subscriber routes
+             *
+             * Routes used only by authenticated users
+             * Admins also have access to these routes.
+             */
             Route::middleware(['web', 'auth', 'verified'])
                 ->namespace($this->namespace)
+                ->domain(config('app.host'))
                 ->group(base_path('routes/dashboard.php'));
 
+            /**
+             * Account Routes
+             *
+             * These routes are the same for both Admins and Subscribers,
+             * not being restricted by a domain, since they provide the
+             * same features for both the endpoints.
+             */
+            Route::middleware(['web', 'auth', 'verified'])
+                ->namespace($this->namespace)
+                ->prefix('account')
+                ->name('account.')
+                ->group(base_path('routes/account.php'));
+
+            /**
+             * Public Routes
+             *
+             * These are routes that don't require authentication.
+             * Eg.: The website's home page.
+             */
             Route::middleware('web')
                 ->namespace($this->namespace)
+                ->domain(config('app.host'))
                 ->group(base_path('routes/web.php'));
         });
     }
