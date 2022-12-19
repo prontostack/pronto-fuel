@@ -26,9 +26,10 @@
       density="compact"
     >
       <NavLink
-        title="Dashboard"
-        :icon="mdiHomeOutline"
-        to="admin.dashboard"
+        v-for="link in $page.props.layout.nav_drawer.items"
+        :key="link.key"
+        v-bind="link"
+        :icon="icons[link.icon]"
       />
     </v-list>
   </v-navigation-drawer>
@@ -36,7 +37,11 @@
 
 <script setup>
 import { useNavDrawer } from '@/store/nav-drawer'
-import { mdiHomeOutline, mdiAccountOutline } from '@mdi/js'
+import { mdiHomeOutline, mdiAccountGroupOutline } from '@mdi/js'
+
+const icons = {
+  mdiHomeOutline, mdiAccountGroupOutline
+}
 
 const drawer = useNavDrawer()
 const { mobile } = useDisplay()

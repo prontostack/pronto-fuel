@@ -19,28 +19,17 @@
         density="compact"
       >
         <NavLink
-          title="My Profile"
-          :icon="mdiAccountOutline"
-          to="account.profile"
-        />
-        <NavLink
-          title="Preferences"
-          :icon="mdiCogOutline"
-          to="account.preferences"
-        />
-        <NavLink
-          title="Security"
-          :icon="mdiLockOutline"
-          to="account.security"
+          v-for="link in menu.items"
+          :key="link.key"
+          v-bind="link"
+          :icon="icons[link.icon]"
         />
 
         <v-divider class="tw-mb-[3px]" />
 
         <NavLink
-          title="Logout"
-          :icon="mdiPowerStandby"
-          to="logout"
-          method="post"
+          v-bind="menu.logout"
+          :icon="icons[menu.logout.icon]"
         />
       </v-list>
     </v-menu>
@@ -48,7 +37,20 @@
 </template>
 
 <script setup>
-import { mdiAccountOutline, mdiPowerStandby, mdiCogOutline, mdiLockOutline } from '@mdi/js'
+import {
+  mdiAccountOutline,
+  mdiPowerStandby,
+  mdiCogOutline,
+  mdiSecurity
+} from '@mdi/js'
 
-const user = usePage().props.value.auth.user
+const icons = {
+  mdiAccountOutline,
+  mdiPowerStandby,
+  mdiCogOutline,
+  mdiSecurity
+}
+
+const user = computed(() => usePage().props.value.auth.user)
+const menu = computed(() => usePage().props.value.layout.account_menu)
 </script>

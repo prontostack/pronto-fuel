@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Account;
+namespace App\Http\Controllers\Account;
 
 use App\Forms\Dashboard\Account\PasswordUpdateForm;
 use App\Http\Controllers\Controller;

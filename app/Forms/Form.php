@@ -191,7 +191,9 @@ class Form implements JsonSerializable
 
     public function validate()
     {
-        $this->request->validate($this->rules);
+        if ($this->rules) {
+            $this->request->validate($this->rules);
+        }
 
         return $this;
     }
@@ -201,26 +203,14 @@ class Form implements JsonSerializable
         $resourceData = $this->resourceData;
 
         $this->result = $this->fields->reduce(function ($result, $field) use ($resourceData) {
-            data_set($result, $field->get('model'), $field->resolve($resourceData));
+            if ($this->request->has($field->get('model'))) {
+                data_set($result, $field->get('model'), $field->resolve($resourceData));
+            }
 
             return $result;
         }, []);
 
         return $this;
-
-        // $this->result = [];
-
-        // foreach ($this->fields->all() as $key => $field) {
-        //     $column = $field->get('model');
-
-        //     $currentValue = data_get($this->resourceData, $column);
-
-        //     $newValue = $field->resolve($currentValue);
-
-        //     data_set($this->result, $column, $newValue);
-        // }
-
-        // return $this;
     }
 
     public function handleSave()

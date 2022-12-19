@@ -7,7 +7,6 @@ use App\View\Component;
 class TwoFactorStatus extends Component
 {
     public $status;
-    public $binds;
     public $trans;
 
     public function component()

@@ -1,7 +1,8 @@
 <template>
   <v-list-item
+    density="compact"
     :prepend-icon="icon"
-    :title="title"
+    :title="label"
     :active="active"
     @click="navigate"
   />
@@ -9,7 +10,8 @@
 
 <script setup>
 const props = defineProps({
-  title: String,
+  active: Boolean,
+  label: String,
   icon: String,
   to: String,
   method: {
@@ -20,20 +22,10 @@ const props = defineProps({
 
 const emit = defineEmits(['navigate'])
 
-const $page = usePage()
-
-const active = computed(() => {
-  return props.to === $page.props.value.current_route
-})
-
 const navigate = () => {
-  if (active.value) {
-    return
-  }
-
   emit('navigate')
 
-  Inertia.visit(window.route(props.to), {
+  Inertia.visit(props.to, {
     method: props.method
   })
 }

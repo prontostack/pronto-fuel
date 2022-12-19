@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Account;
+namespace App\Http\Controllers\Account;
 
 use App\Forms\Dashboard\Account\ProfileForm;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
         $profileForm = ProfileForm::make();
 
-        return inertia()->render('Dashboard/Account/Profile', compact([
+        return inertia()->renderEndpoint('Account/Profile', compact([
             'title',
             'profileForm'
         ]));

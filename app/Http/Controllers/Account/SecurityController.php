@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Account;
+namespace App\Http\Controllers\Account;
 
 use App\Forms\Dashboard\Account\PasswordUpdateForm;
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class SecurityController extends Controller
 
         $twoFactorStatus = new TwoFactorStatus;
 
-        return inertia()->render('Dashboard/Account/Security', compact([
+        return inertia()->renderEndpoint('Account/Security', compact([
             'title',
             'passwordUpdateForm',
             'twoFactorStatus'

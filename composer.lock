@@ -4,8 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e74162cbc4261111e5bb6f2d6494142",
+    "content-hash": "ce442fee63988514d1afd23797267601",
     "packages": [
+        {
+            "name": "ambengers/kinetic",
+            "version": "1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ambengers/kinetic.git",
+                "reference": "bd26e398b02ea24c0d9b280bad60f58f659d9bdf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ambengers/kinetic/zipball/bd26e398b02ea24c0d9b280bad60f58f659d9bdf",
+                "reference": "bd26e398b02ea24c0d9b280bad60f58f659d9bdf",
+                "shasum": ""
+            },
+            "require": {
+                "inertiajs/inertia-laravel": "~0.5",
+                "php": "~8.0.0|~8.1.0|~8.2.0"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^2.0",
+                "orchestra/testbench": "^4.0|^5.0|^6.4|^7.0",
+                "phpunit/phpunit": "^8.0|^9.5.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ambengers\\Kinetic\\KineticServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ambengers\\Kinetic\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marvin Quezon",
+                    "email": "quezon.marvin@gmail.com"
+                }
+            ],
+            "description": "Adds view-composer like feature to Inertia.js Laravel adapter.",
+            "homepage": "https://github.com/ambengers/kinetic",
+            "keywords": [
+                "composer",
+                "inertia",
+                "inertia.js",
+                "inertiajs",
+                "laravel",
+                "view"
+            ],
+            "support": {
+                "issues": "https://github.com/ambengers/kinetic/issues",
+                "source": "https://github.com/ambengers/kinetic/tree/1.8"
+            },
+            "time": "2022-11-25T02:26:36+00:00"
+        },
         {
             "name": "aws/aws-crt-php",
             "version": "v1.0.2",

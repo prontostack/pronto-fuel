@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ToastServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        App\Providers\AdminServiceProvider::class,
 
     ],
 

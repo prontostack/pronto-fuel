@@ -99,7 +99,7 @@ const formData = {
 
 if (props.fields) {
   props.fields.forEach((field) => {
-    formData[field.model] = field.value
+    formData[field.model] = field.value || undefined
   })
 }
 

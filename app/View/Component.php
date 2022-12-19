@@ -5,10 +5,11 @@ namespace App\View;
 use Illuminate\Support\Arr;
 use Illuminate\View\Component as IlluminateComponent;
 use JsonSerializable;
+use Illuminate\Support\Str;
 
 class Component extends IlluminateComponent implements JsonSerializable
 {
-    protected $binds = [];
+    public $binds = [];
 
     public function render()
     {
@@ -16,21 +17,26 @@ class Component extends IlluminateComponent implements JsonSerializable
 
     public function __call($method, $arg)
     {
-        data_set($this->binds, $method, ...$arg);
+        data_set($this->binds, Str::snake($method), ...$arg);
+
         return $this;
     }
 
     public function toArray()
     {
-        return [
-            'component' => method_exists($this, 'component')
-                ? $this->{'component'}()
-                : null,
-            'binds' => array_replace_recursive(
-                Arr::except($this->extractPublicProperties(), ['attributes', 'componentName']),
-                $this->binds
-            )
-        ];
+        $binds = array_replace_recursive(
+            Arr::except($this->extractPublicProperties(), ['attributes', 'componentName']),
+            $this->binds
+        );
+
+        if (method_exists($this, 'component')) {
+            return [
+                'component' => $this->{'component'}(),
+                'binds' => $binds
+            ];
+        }
+
+        return $binds;
     }
 
     public function jsonSerialize()

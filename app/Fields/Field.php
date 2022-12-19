@@ -63,21 +63,27 @@ abstract class Field implements JsonSerializable
 
     public function rules($rules = [])
     {
-        $this->set('rules', $rules);
+        $existingRules = $this->get('rules', []);
+
+        $this->set('rules', $existingRules + $rules);
 
         return $this;
     }
 
     public function createRules($rules = [])
     {
-        $this->set('createRules', $rules);
+        $existingRules = $this->get('rules', []);
+
+        $this->set('createRules', $existingRules + $rules);
 
         return $this;
     }
 
     public function editRules($rules = [])
     {
-        $this->set('editRules', $rules);
+        $existingRules = $this->get('rules', []);
+
+        $this->set('editRules', $existingRules + $rules);
 
         return $this;
     }

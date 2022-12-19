@@ -1,7 +1,5 @@
-<template layout="AppShell,Authenticated">
+<template layout="AppShell,Subscriber">
   <v-container class="tw-my-4 md:tw-my-8">
-    <Head :title="title" />
-
     <v-row>
       <v-col>
         <h1 class="text-h4">

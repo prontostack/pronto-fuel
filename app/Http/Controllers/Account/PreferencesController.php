@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Account;
+namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class PreferencesController extends Controller
             ]
         ];
 
-        return inertia()->render('Dashboard/Account/Preferences', compact([
+        return inertia()->renderEndpoint('Account/Preferences', compact([
             'title',
             'trans'
         ]));

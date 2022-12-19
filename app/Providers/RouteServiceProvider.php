@@ -63,7 +63,8 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware(['web', 'auth', 'verified'])
                 ->namespace($this->namespace)
                 ->domain(config('app.host'))
-                ->group(base_path('routes/dashboard.php'));
+                ->name('subscriber.')
+                ->group(base_path('routes/subscriber.php'));
 
             /**
              * Account Routes

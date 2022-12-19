@@ -1,4 +1,4 @@
-<template layout="AppShell,Authenticated">
+<template>
   <CenteredContainer>
     <AccountSection
       :title="trans.dark_mode.title"

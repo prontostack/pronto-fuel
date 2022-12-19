@@ -24,7 +24,7 @@ const props = defineProps({
     default: 'dark'
   },
   title: String,
-  text: String
+  text: [String, Number]
 })
 </script>
 

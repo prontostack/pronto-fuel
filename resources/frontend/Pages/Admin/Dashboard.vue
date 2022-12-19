@@ -8,7 +8,7 @@
         lg="3"
         xl="2"
       >
-        <StatsCard v-bind="registeredUsersCard.binds" />
+        <StatsCard v-bind="registeredUsersCard" />
       </v-col>
       <v-col
         cols="12"
@@ -17,7 +17,7 @@
         lg="3"
         xl="2"
       >
-        <StatsCard v-bind="registeredUsersCardTest.binds" />
+        <StatsCard v-bind="registeredUsersCardTest" />
       </v-col>
     </v-row>
   </v-container>

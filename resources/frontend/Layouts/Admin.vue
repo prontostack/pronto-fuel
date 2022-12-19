@@ -14,11 +14,11 @@
       </template>
 
       <v-app-bar-title>
-        <span>{{ $page.props.title }}</span>
+        <span class="tw-inline-block tw-mr-8">{{ $page.props.title }}</span>
+        <PortalTarget name="contextual-actions" />
       </v-app-bar-title>
 
       <template #append>
-        <PortalTarget name="contextual-actions" />
         <AccountMenu />
       </template>
     </v-app-bar>
