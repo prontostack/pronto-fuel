@@ -62,7 +62,7 @@ provide('mini', isMini)
 provide('width', props.width)
 provide('miniWidth', props.miniWidth)
 
-Inertia.on('navigate', () => {
+router.on('navigate', () => {
   if (props.isOpen && $q.screen.xs) {
     emit('update:isOpen', false)
   }

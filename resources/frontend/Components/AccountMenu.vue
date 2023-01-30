@@ -79,9 +79,9 @@ const dark = computed({
 
 const isOpen = ref(false)
 
-const user = usePage().props.value.auth.user
+const user = usePage().props.auth.user
 
-Inertia.on('navigate', () => {
+router.on('navigate', () => {
   isOpen.value = false
 })
 </script>

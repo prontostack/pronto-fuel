@@ -69,7 +69,7 @@
         "useSlots": true,
         "defineExpose": true,
         // Inertia
-        "Inertia": true,
+        "router": true,
         "useForm": true,
         "usePage": true,
         // Pinia

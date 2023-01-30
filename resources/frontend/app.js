@@ -2,7 +2,7 @@ import '@/assets/tailwind.css'
 import 'quasar/src/css/index.sass'
 
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/inertia-vue3'
+import { createInertiaApp } from '@inertiajs/vue3'
 import { createPinia } from 'pinia'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { Quasar } from 'quasar'
@@ -17,9 +17,10 @@ const appName = window.document.getElementsByTagName('title')[0]?.innerText || '
 
 createInertiaApp({
   title: (title) => `${title} - ${appName}`,
+  progress: false,
   resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-  setup ({ el, app, props, plugin }) {
-    return createApp({ render: () => h(app, props) })
+  setup ({ el, App, props, plugin }) {
+    return createApp({ render: () => h(App, props) })
       .use(createPinia())
       .use(plugin)
       .use(Notifications)

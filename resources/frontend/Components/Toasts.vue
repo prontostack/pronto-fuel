@@ -20,10 +20,8 @@
 <script setup>
 import { notify } from '@kyvg/vue3-notification'
 
-const $page = usePage()
-
 const toasts = computed(() => {
-  return $page.props.value.toasts
+  return usePage().props.toasts
 })
 
 const renderToasts = (toastsSource) => {

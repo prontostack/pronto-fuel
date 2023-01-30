@@ -61,11 +61,9 @@ import { useLocalStorage } from '@vueuse/core'
 
 const $q = useQuasar()
 
-const page = usePage()
-
 const isNavDrawerOpen = ref($q.screen.gt.xs)
 
-const layout = useLocalStorage(`authenticated-layout-${page.props.value.auth.user.id}`, {
+const layout = useLocalStorage(`authenticated-layout-${usePage().props.auth.user.id}`, {
   navigationDrawer: {
     mini: true
   }

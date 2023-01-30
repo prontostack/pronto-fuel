@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-import { Inertia } from '@inertiajs/inertia'
 import { Modal } from 'momentum-modal'
 import { useAppShell } from '@/store/app-shell'
 
@@ -26,6 +25,6 @@ setDarkMode()
 
 const loadingIndicator = ref(null)
 
-Inertia.on('start', () => loadingIndicator.value.start())
-Inertia.on('finish', () => loadingIndicator.value.stop())
+router.on('start', () => loadingIndicator.value.start())
+router.on('finish', () => loadingIndicator.value.stop())
 </script>

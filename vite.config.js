@@ -31,12 +31,8 @@ export default defineConfig({
         'pinia',
         'quasar',
         {
-          '@inertiajs/inertia': [
-            'Inertia'
-          ]
-        },
-        {
-          '@inertiajs/inertia-vue3': [
+          '@inertiajs/vue3': [
+            'router',
             'usePage',
             'useForm'
           ]
@@ -63,14 +59,14 @@ export default defineConfig({
           if (name === 'Head') {
             return {
               importName: 'Head',
-              path: '@inertiajs/inertia-vue3'
+              path: '@inertiajs/vue3'
             }
           }
 
           if (name === 'Link') {
             return {
               importName: 'Link',
-              path: '@inertiajs/inertia-vue3'
+              path: '@inertiajs/vue3'
             }
           }
         }
