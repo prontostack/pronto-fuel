@@ -70,7 +70,7 @@ npm start
 # Go to http://localhost
 ```
 
-## Quick Start
+## Quick Start without VSCode Dev Container
 
 ```bash
 # Clone the repo
