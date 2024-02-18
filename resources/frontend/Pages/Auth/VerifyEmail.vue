@@ -31,5 +31,5 @@
 </template>
 
 <script setup>
-const form = useForm()
+const form = useForm(Object)
 </script>
